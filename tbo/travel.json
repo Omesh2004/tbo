@@ -1,0 +1,862 @@
+{
+  "flights": [
+    {
+      "type": "flight-offer",
+      "id": "1",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": false,
+      "isUpsellOffer": false,
+      "lastTicketingDate": "2026-02-14",
+      "lastTicketingDateTime": "2026-02-14",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT3H30M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "0",
+                "at": "2026-03-15T14:15:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2026-03-15T18:45:00"
+              },
+              "carrierCode": "GQ",
+              "number": "921",
+              "aircraft": {
+                "code": "32N"
+              },
+              "operating": {
+                "carrierCode": "GQ"
+              },
+              "duration": "PT3H30M",
+              "id": "39",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "79.57",
+        "base": "47.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "SUPPLIER"
+          },
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "79.57"
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false
+      },
+      "validatingAirlineCodes": [
+        "GQ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "79.57",
+            "base": "47.00"
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "39",
+              "cabin": "ECONOMY",
+              "fareBasis": "VILJOW",
+              "brandedFare": "JOY",
+              "brandedFareLabel": "SKY JOY",
+              "class": "V",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "includedCabinBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "description": "CARRY8KG 18LB UPTO 45LI 115LCM",
+                  "isChargeable": false,
+                  "amenityType": "BAGGAGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "PRE RESERVED SEAT ASSIGNMENT",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "PRIORITY BAGGAGE",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "PRIORITY SECURITY",
+                  "isChargeable": true,
+                  "amenityType": "TRAVEL_SERVICES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "CHANGEABLE TICKET",
+                  "isChargeable": true,
+                  "amenityType": "BRANDED_FARES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "LOUNGE",
+                  "isChargeable": true,
+                  "amenityType": "LOUNGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "2",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": false,
+      "isUpsellOffer": false,
+      "lastTicketingDate": "2026-02-15",
+      "lastTicketingDateTime": "2026-02-15",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT5H50M",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "2",
+                "at": "2026-03-15T18:00:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2026-03-15T20:30:00"
+              },
+              "carrierCode": "AZ",
+              "number": "63",
+              "aircraft": {
+                "code": "32N"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H30M",
+              "id": "98",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2026-03-15T21:50:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2026-03-16T00:50:00"
+              },
+              "carrierCode": "AZ",
+              "number": "722",
+              "aircraft": {
+                "code": "32Q"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "99",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "119.98",
+        "base": "61.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "SUPPLIER"
+          },
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "119.98",
+        "additionalServices": [
+          {
+            "amount": "70.00",
+            "type": "CHECKED_BAGS"
+          }
+        ]
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "119.98",
+            "base": "61.00"
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "98",
+              "cabin": "ECONOMY",
+              "fareBasis": "K07LGTE9",
+              "brandedFare": "LIGHT",
+              "brandedFareLabel": "LIGHT",
+              "class": "K",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "includedCabinBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "description": "FIRST CHECKED BAG",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "BACK SEAT",
+                  "isChargeable": true,
+                  "amenityType": "BRANDED_FARES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                }
+              ]
+            },
+            {
+              "segmentId": "99",
+              "cabin": "ECONOMY",
+              "fareBasis": "K07LGTE9",
+              "brandedFare": "LIGHT",
+              "brandedFareLabel": "LIGHT",
+              "class": "K",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "includedCabinBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "description": "FIRST CHECKED BAG",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "BACK SEAT",
+                  "isChargeable": true,
+                  "amenityType": "BRANDED_FARES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "flight-offer",
+      "id": "3",
+      "source": "GDS",
+      "instantTicketingRequired": false,
+      "nonHomogeneous": false,
+      "oneWay": false,
+      "isUpsellOffer": false,
+      "lastTicketingDate": "2026-02-15",
+      "lastTicketingDateTime": "2026-02-15",
+      "numberOfBookableSeats": 9,
+      "itineraries": [
+        {
+          "duration": "PT6H",
+          "segments": [
+            {
+              "departure": {
+                "iataCode": "MAD",
+                "terminal": "2",
+                "at": "2026-03-15T11:35:00"
+              },
+              "arrival": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2026-03-15T14:00:00"
+              },
+              "carrierCode": "AZ",
+              "number": "61",
+              "aircraft": {
+                "code": "32N"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H25M",
+              "id": "1",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            },
+            {
+              "departure": {
+                "iataCode": "FCO",
+                "terminal": "1",
+                "at": "2026-03-15T15:35:00"
+              },
+              "arrival": {
+                "iataCode": "ATH",
+                "at": "2026-03-15T18:35:00"
+              },
+              "carrierCode": "AZ",
+              "number": "718",
+              "aircraft": {
+                "code": "32Q"
+              },
+              "operating": {
+                "carrierCode": "AZ"
+              },
+              "duration": "PT2H",
+              "id": "2",
+              "numberOfStops": 0,
+              "blacklistedInEU": false
+            }
+          ]
+        }
+      ],
+      "price": {
+        "currency": "EUR",
+        "total": "119.98",
+        "base": "61.00",
+        "fees": [
+          {
+            "amount": "0.00",
+            "type": "SUPPLIER"
+          },
+          {
+            "amount": "0.00",
+            "type": "TICKETING"
+          }
+        ],
+        "grandTotal": "119.98",
+        "additionalServices": [
+          {
+            "amount": "70.00",
+            "type": "CHECKED_BAGS"
+          }
+        ]
+      },
+      "pricingOptions": {
+        "fareType": [
+          "PUBLISHED"
+        ],
+        "includedCheckedBagsOnly": false
+      },
+      "validatingAirlineCodes": [
+        "AZ"
+      ],
+      "travelerPricings": [
+        {
+          "travelerId": "1",
+          "fareOption": "STANDARD",
+          "travelerType": "ADULT",
+          "price": {
+            "currency": "EUR",
+            "total": "119.98",
+            "base": "61.00"
+          },
+          "fareDetailsBySegment": [
+            {
+              "segmentId": "1",
+              "cabin": "ECONOMY",
+              "fareBasis": "K07LGTE9",
+              "brandedFare": "LIGHT",
+              "brandedFareLabel": "LIGHT",
+              "class": "K",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "includedCabinBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "description": "FIRST CHECKED BAG",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "BACK SEAT",
+                  "isChargeable": true,
+                  "amenityType": "BRANDED_FARES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                }
+              ]
+            },
+            {
+              "segmentId": "2",
+              "cabin": "ECONOMY",
+              "fareBasis": "K07LGTE9",
+              "brandedFare": "LIGHT",
+              "brandedFareLabel": "LIGHT",
+              "class": "K",
+              "includedCheckedBags": {
+                "quantity": 0
+              },
+              "includedCabinBags": {
+                "quantity": 1
+              },
+              "amenities": [
+                {
+                  "description": "FIRST CHECKED BAG",
+                  "isChargeable": true,
+                  "amenityType": "BAGGAGE",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "ADVANCE SEAT RESERVATION",
+                  "isChargeable": true,
+                  "amenityType": "PRE_RESERVED_SEAT",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "SNACK",
+                  "isChargeable": false,
+                  "amenityType": "MEAL",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                },
+                {
+                  "description": "BACK SEAT",
+                  "isChargeable": true,
+                  "amenityType": "BRANDED_FARES",
+                  "amenityProvider": {
+                    "name": "BrandedFare"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "hotels": [
+    {
+      "type": "hotel-offers",
+      "hotel": {
+        "type": "hotel",
+        "hotelId": "ONATHELE",
+        "chainCode": "ON",
+        "dupeId": "700094851",
+        "name": "ELEFSINA HOTEL",
+        "cityCode": "ATH",
+        "latitude": 38.04856,
+        "longitude": 23.54032
+      },
+      "available": true,
+      "offers": [
+        {
+          "id": "W0IRBLQR6S",
+          "checkInDate": "2026-03-15",
+          "checkOutDate": "2026-03-17",
+          "rateCode": "COR",
+          "commission": {
+            "percentage": "8"
+          },
+          "boardType": "BREAKFAST",
+          "room": {
+            "type": "B1D",
+            "typeEstimated": {
+              "category": "SUPERIOR_ROOM",
+              "beds": 1,
+              "bedType": "DOUBLE"
+            },
+            "description": {
+              "text": "Non refundable Corporate rate\nSUPERIOR ROOM, 29 square meters, double bed, wi",
+              "lang": "EN"
+            }
+          },
+          "guests": {
+            "adults": 1
+          },
+          "price": {
+            "currency": "EUR",
+            "total": "318.48",
+            "taxes": [
+              {
+                "code": "SALES_TAX",
+                "pricingFrequency": "PER_NIGHT",
+                "pricingMode": "PER_PRODUCT",
+                "percentage": "13.00",
+                "included": true
+              },
+              {
+                "code": "SERVICE_CHARGE",
+                "pricingFrequency": "PER_NIGHT",
+                "pricingMode": "PER_PRODUCT",
+                "percentage": "0.05",
+                "included": true
+              },
+              {
+                "code": "MISCELLANEOUS",
+                "pricingFrequency": "PER_NIGHT",
+                "pricingMode": "PER_PRODUCT",
+                "amount": "6.00",
+                "currency": "EUR",
+                "included": false
+              }
+            ],
+            "variations": {
+              "average": {
+                "total": "159.24"
+              },
+              "changes": [
+                {
+                  "startDate": "2026-03-15",
+                  "endDate": "2026-03-17",
+                  "base": "156.24"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "cancellations": [
+              {
+                "numberOfNights": 2,
+                "amount": "100.00",
+                "policyType": "CANCELLATION"
+              }
+            ],
+            "prepay": {
+              "acceptedPayments": {
+                "creditCards": [
+                  "VI",
+                  "CA",
+                  "AX",
+                  "DC",
+                  "IK",
+                  "EC",
+                  "XS"
+                ],
+                "methods": [
+                  "CREDIT_CARD"
+                ],
+                "creditCardPolicies": [
+                  {
+                    "vendorCode": "VI"
+                  },
+                  {
+                    "vendorCode": "CA"
+                  },
+                  {
+                    "vendorCode": "AX"
+                  },
+                  {
+                    "vendorCode": "DC"
+                  },
+                  {
+                    "vendorCode": "IK"
+                  },
+                  {
+                    "vendorCode": "EC"
+                  },
+                  {
+                    "vendorCode": "XS"
+                  }
+                ]
+              }
+            },
+            "paymentType": "prepay",
+            "refundable": {
+              "cancellationRefund": "NON_REFUNDABLE"
+            }
+          },
+          "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/W0IRBLQR6S",
+          "roomInformation": {
+            "description": "Non refundable Corporate rate\nSUPERIOR ROOM, 29 square meters, double bed, wi",
+            "type": "B1D",
+            "typeEstimated": {
+              "bedType": "DOUBLE",
+              "beds": 1,
+              "category": "SUPERIOR_ROOM"
+            },
+            "providerContentReference": {
+              "id": "DOUBL"
+            }
+          }
+        }
+      ],
+      "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=ONATHELE&adults=1&checkInDate=2026-03-15&checkOutDate=2026-03-17"
+    }
+  ],
+  "hotel_price_range": {
+    "min": 318.48,
+    "max": 318.48,
+    "avg": 318.48
+  },
+  "activities": [
+    {
+      "type": "activity",
+      "id": "11388887",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/shopping/activities/11388887",
+        "methods": [
+          "GET"
+        ]
+      },
+      "name": "Essential Athens Highlights Full-Day Private Tour",
+      "description": "<div><p>From pick up at your Cruise ship, Hotel, or Athens residence sit back in the comfort of one of our new Luxury Class Mercedes Vehicles as your experienced informative professional tour driver takes you on a private tour of all the Athens Highlights including the Acropolis, New Acropolis Museum, Arch of Hadrian, Temple of Zeus, Olympic Stadium, Parliament &amp; Traditional National Guards, and National Archaeological Museum, so you won't miss anything during your visit.\nOur Flexible Booking Options allow you to include a wonderful Traditional Lunch (Silver Option), Expert guiding with a Licensed Professional Guide who will be with you for 3 hours to cover the Acropolis and Acropolis Museum (Gold Option), or both Lunch plus Guide (Platinum Option), whilst a Family &amp; discount option is also available, as well as a Half-Day option including an expert guide for those preferring a shorter tour.\nPlease note that for bookings of 8 or more persons, a private guide is automatically included.</p></div>",
+      "geoCode": {
+        "latitude": 37.9837502,
+        "longitude": 23.7273747
+      },
+      "price": {
+        "amount": "884.0",
+        "currencyCode": "EUR"
+      },
+      "pictures": [
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ4ODhjYjE2LWE1Y2QtNDFhZS1iZWNhLTA5ZmU0N2IxZDBlNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2RjMTE0OTFjLTk0MWYtNDYwYi1hYzkyLWYwNGRjZjExMzhjMyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAwN2ZhMDliLTZjYzAtNDEwYi1iMzk1LTE0NzBjYWI1YWI1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I0NWNmYTMzLWQ5NzgtNGI4Zi05MDM5LWYwYzE5ZjFhMzMwNiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZjZTA1YWEzLWM4NTEtNDQyNC1hNjFjLTJkYjU5ZDgzNGFjNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE3ODZkZjVmLWVjMWEtNGRjOS1hN2IwLTE2OGMwYTI1NzdlZiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzYxYTRiNzk2LTkwYzQtNDg1Mi1hNDFiLTU3ZDI1NzkyZDU5YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE5NTI3ODA0LWY3YzUtNDQ4Ni1hNjQwLTlmYTMxMGMyNTg2ZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFkNjU5M2YzLTgwNDQtNDMzMC1hM2RlLTA2NWY1MDMxOTFhMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzZjg4ZGQyLTlkNjMtNGM2NS1hMDJmLWU3MGNjODkwNzE5NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyMWQxNjE5LWQ2MDAtNGFmZS1iMWViLTVjOWYzNzVjNjE5MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkZDk5MGExLWNiOTUtNGE0ZS05ZTJlLTkzYzg2NWQ5MWI3MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M1OWFjNmJhLTlmMzctNGM2Zi1hYTBkLTdlNWVhZjVkYmI3NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2E0MWI0NTJiLTBjZWUtNDI2OC05MmFmLTY3ZWNmMDQ5ZTZlMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxOTBkMzA2LTFjZWQtNGY5MC05NDBjLWE1ZTRkMjVjMWNmYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzI5NWVlYjFjLTgzZTItNDQzZi05NTI5LTI0ODE2Y2UzODE3ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2IxZGE0YTllLTdhNjAtNDAwOS1iMjdkLTYwMzFmMmNkNWRmZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzMTJiNTE2LTE0YzQtNGMyNy1hM2IwLTkyMzQ3MmY0ZGEyZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2FiMmNlNmY1LTFmODgtNDQ4OC1hMzFiLTFmNmQyZDgxODg3MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg5YWE5MGVjLWE2NTYtNDQ3NS1hZTVkLTIwMWJiN2VhMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzMwMTkxOWVjLTViNWEtNDJhNy05MDgxLTZjM2VlYTVhY2Y2MSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzU2YzBlMGQ4LTBkZmUtNDcxZS05M2FlLWQ5MDNmNWI5MWQyNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzdhMjhkNDVlLTdjMWYtNGMyYS1iMDVjLTcyNmUwZmFmYmFjMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MyYTJhMGFkLTQ0N2UtNDg2NS1hZWQxLWMyZWNjNGY3ODQ4OSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2Y4NmNiYWQ3LWEwMWItNGJlOS1hOTU0LWFlMGUyNjBmYTA1OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZiYjc4NjA1LThkYmUtNDg1NS05ZjY4LThlYTg0MGFlOGRiOCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5MTEzMzk2LTIxZWMtNGYwYi05OWY4LWE0MmUwNThkNjQzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzc0MzA3ZGI4LTcwNjYtNGNlYS1iZmIxLTY1ZGUxYjNiNjgyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2ZhYTllNDEwLTNlNTgtNDJiYy1hMTdjLTg4Y2FkOGQ5OTA0MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzhkMjMyNzA4LWNhZmYtNGExYy1iOGViLWU4OWRkM2MxN2M1NCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MxMDdkYTk1LWFlZGYtNDk5MS1iNTVmLTdjMDc4YTllNTU4MSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5ZGRmMDFiLWZiZjctNDE3ZC1hYjg3LTVkMGVlZWRhYTg2YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM5MjVmMzdjLTJlYzEtNDdjYy1iMTUyLWIwZDFjYzI5ZjUzNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE4OTAzMzZhLWIxYTktNGZlYi05N2RhLTc0YjY0Njk1YmI3YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2JjZWVkMTZjLWIzYWUtNGJjMC1iMmE3LTYwN2FiYjNjZGMzYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZhNDdmNWNiLTEwMmUtNDkxMy1iYjAxLTc1OTk0ODI0ZWYzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM0YjFjMjkyLWU1ZmQtNDUyZi05NDFhLTRhZGNiMzdhZWE2OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFiNDViM2IxLWI2YTMtNDhjOC04NzFjLWM1NDQ5YmMzODhjNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U2NWI5MDdkLWE0MjYtNGY4MS04Y2FhLTU3ZjEyNWM0YzJlZiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2ZiNjY3ZGZiLTYzNzAtNDExOC1hYzE3LTU0YTgzMzFkNmE4YSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzY3NWMwNDBhLTFmMTctNDBhMS04NGRjLTdlYWYwOGM3ODAyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFhYjg4YTljLWU1NjctNDVhZi05Nzg0LWMyOGEzMTU1YjY0MyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0YTAwYWUxLTAyMWQtNDRkZS05ZWFlLTNhMzA1ZWI3ZWEyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg3MjhkYjNiLTc1ZWEtNGFmNC1hNjgzLTRkOGRlMzU2NjY0NiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+      ],
+      "bookingLink": "https://amadeus.booking.holibob.tech/product/9fa4d7e6-e733-42c7-ac14-4dd35f6a3648",
+      "minimumDuration": "8 hours"
+    },
+    {
+      "type": "activity",
+      "id": "3510958",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/shopping/activities/3510958",
+        "methods": [
+          "GET"
+        ]
+      },
+      "name": "Private Tour of Delphi & Arachova from Athens",
+      "description": "<div><p>Visit the breathtaking sites in Delphi and learn the rich history of Castalia Spring, the archaeological site and the Theatre, the Athenian Treasury, the Temple of Apollo famous for its oracle Pythia, the Navel of the Earth.Explore the Museum of Delphi, with its spectacular collection of artifacts, including the Naxian Sphinx, the unique bronze Charioteer and the Statue of Antinoos.\u00a0Enjoy your traditional \u201cvillage style\u201d lunch on the magnificent Caldera at Delphi, overlooking fabulous Itea.</p></div>",
+      "geoCode": {
+        "latitude": 37.9839148,
+        "longitude": 23.7273585
+      },
+      "price": {
+        "amount": "513.0",
+        "currencyCode": "EUR"
+      },
+      "pictures": [
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2UxMmZlNGQ4LTE3OTgtNDA0NC1hNDZlLTViYzM4YzM3OGQ0NCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzExMjEyNmY5LTMzYWUtNGMyMS04MDMwLWZkZmEyYzU2MmIzYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkYjNhYTdhLTE4MTUtNGVlNy1hNDNmLTAwM2YyYzVjZmIwMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyOTliNTY1LWRmNTQtNGY2ZS1hZWZkLTFkOWNmZmQ4YTUwZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzU1ZjFkNDFhLTNhNGYtNGQwNC04YjM3LTU4MzFiYTlhNGJmZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxYThlZjhjLTdkMjEtNDZmYy1iYWE1LTE1NjVkYTQ3OTdkYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg1YjVkNDY1LTllMjAtNGQ3Ny1iODE4LTBhOGM1ODdjYmIzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzVjOGE4YWUzLTlmNzgtNGEzNC04NzUxLTA0MGZiNGM1Y2NjNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2YyZjk3YmU2LWFmYmMtNDQwMi1iNDU5LTE0NWVmM2E3NmZhOSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ2YjNjZmQ4LTIxNzYtNDA5Yy05NTZlLTI3NDgzMmE1ZjZjYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2VmZGUyYmE1LTc1MDUtNDQ4MS1hOTFhLTk2MWI3ZTkxYTNkNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MxZTM1NjA0LWVmNGYtNDQ3ZS05OTdmLWY5NTliOTc0ZDY2YiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzBhMDBmYTkyLTI1OTYtNDEwMi05MjI0LThmZDFkYzFmZDE1NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJlZmI5YmUxLTgzMzItNDJiNS1iNDNhLThlNzlkMWJkZDgzOCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2Y3N2Y2YTk0LTA3ZWUtNGFmNi05OGVlLThmZjVhM2NhOTEyYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2UxOTA0MDE0LTg0ZDQtNDQwNi1iYTI4LTVmZjgxNGI5YjVkYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+      ],
+      "bookingLink": "https://amadeus.booking.holibob.tech/product/14572372-49f8-481a-b618-73706f57f0e8",
+      "minimumDuration": "9 hours"
+    },
+    {
+      "type": "activity",
+      "id": "3510755",
+      "self": {
+        "href": "https://test.api.amadeus.com/v1/shopping/activities/3510755",
+        "methods": [
+          "GET"
+        ]
+      },
+      "name": "Ancient Olympia Private Tour from Athens",
+      "description": "<div><p>Discover the historic grounds where the Olympic Games were first conceived. Experience the thrill of sprinting down the very track ancient athletes once raced upon, where their sole reward was an olive wreath. Embrace the profound ambiance of the sacred site where the Olympic flame is ignited, connecting you directly to the essence of this timeless tradition.</p></div>",
+      "geoCode": {
+        "latitude": 37.9770222,
+        "longitude": 23.7212589
+      },
+      "price": {
+        "amount": "602.0",
+        "currencyCode": "EUR"
+      },
+      "pictures": [
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U4ZWI5ZGNmLTJmOWMtNGVlMC05MjRlLTBlYzY0ZjRlODkzMiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M3OTZmZWFiLWVjY2EtNGZkZS1hMWViLTYzMDBjOWMwMmRhNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M5MDI0NDhhLTFjYTEtNDI2Yy04ZmIzLTkxODEzNTBhOWZhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U5MzU2ZDQ1LWNkYzgtNDQzNC1hMDlmLWNjMDNmZjkzZjQ1OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg2YWNjOWRiLWFmZWEtNGMwZC04NGU5LTA4NWYxYmY0YmY2ZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2RiNzgxNGVmLTJkOTMtNDA0ZS04MGVhLWNjZGZhMDJmOWZhOSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0ODY0OWE4LWIzZmMtNDRkMS04N2Y2LTRjYWViMGMyOGJjZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJhMzZlZGM4LTM3NWQtNDU1Mi05N2IyLWZiZDE2OTE5YjkwYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzgzNjIwNjhkLTc5NDQtNDRmNS1hNWRiLWEwZTFjZjdlZjQzYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I3NGU0OTJkLWMwMjctNDM3YS1hZjI2LWM5M2EwZDk3ZGVhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzgwNTM1NDU4LTg4MzMtNDBmNC04NzZiLWQ3YTg3YTRlMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+      ],
+      "bookingLink": "https://amadeus.booking.holibob.tech/product/4391d97c-e8ea-11e9-b729-06829e32ec62",
+      "minimumDuration": "12 hours"
+    }
+  ]
+}

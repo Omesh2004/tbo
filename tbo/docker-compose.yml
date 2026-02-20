@@ -1,0 +1,104 @@
+# compose version key is obsolete; removed to silence warnings
+
+services:
+  # Redis Service with persistence
+  redis:
+    image: redis:7-alpine
+    container_name: travel-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - travel-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Zookeeper Service (required for Kafka)
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: travel-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_INIT_LIMIT: 5
+    networks:
+      - travel-network
+    ports:
+      - "2181:2181"
+
+  # Kafka Service
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: travel-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      # Expose two listeners: one for internal docker network (kafka:9092) and one for host access (localhost:9092)
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+    networks:
+      - travel-network
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'nc -z localhost 9092' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Qdrant Vector DB
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: travel-qdrant
+    ports:
+      - "6333:6333"  # REST
+      - "6334:6334"  # gRPC
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    networks:
+      - travel-network
+
+  # Travel Data Pipeline Service
+  travel-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: travel-pipeline
+    depends_on:
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_BROKER: kafka:9092
+      KAFKA_TOPIC: travel-data-raw
+      QDRANT_URL: http://qdrant:6333
+      # QDRANT_API_KEY: set this only if using SaaS. Local docker doesn't require it.
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./:/app/
+    networks:
+      - travel-network
+    restart: unless-stopped
+
+networks:
+  travel-network:
+    driver: bridge
+
+volumes:
+  redis_data:
+  qdrant_storage:
