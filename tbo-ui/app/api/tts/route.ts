@@ -5,8 +5,8 @@ export async function POST(req: Request) {
   try {
     const { text } = await req.json();
     
-    // 'Rachel' voice ID
-    const voiceId = "21m00Tcm4TlvDq8ikWAM"; 
+    // 'Sarah' voice ID
+    const voiceId = "EXAVITQu4vr4xnSDxMaL"; 
 
     const response = await fetch(
       `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
@@ -18,8 +18,9 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           text,
-          model_id: "eleven_turbo_v2", 
+          model_id: "eleven_multilingual_v2", 
           voice_settings: {
+            speed: 1.0,
             stability: 0.5,
             similarity_boost: 0.75,
           },
