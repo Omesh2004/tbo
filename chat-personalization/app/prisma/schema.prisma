@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-py"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user_profile {
+  user_id              String    @id
+  google_email         String    @unique
+  google_id            String    @unique
+  name                 String
+  picture_url          String?
+  locale               String    @default("en")
+  created_at           DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+  last_active_at       DateTime  @updatedAt
+  
+  prompt_history       prompt_history[]
+  characteristics      user_characteristics?
+}
+
+model prompt_history {
+  id                   String    @id @default(uuid())
+  user_id              String
+  prompt_text          String    @db.Text
+  response_text        String?   @db.Text
+  category             String?   @default("general")
+  intent               String?
+  domain               String?   @default("travel")
+  tags                 String[]  @default([])
+  sentiment            String?   @default("neutral")
+  timestamp            DateTime  @default(now())
+  
+  user_profile         user_profile @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  
+  @@index([user_id, timestamp])
+  @@index([user_id, domain])
+}
+
+model user_characteristics {
+  id                   String    @id @default(uuid())
+  user_id              String    @unique
+  
+  travel_preferences   Json      @default("{}")
+  budget_profile       Json      @default("{}")
+  booking_patterns     Json      @default("{}")
+  interests            String[]  @default([])
+  risk_tolerance       String    @default("moderate")
+  decision_style       String    @default("balanced")
+  
+  detailed_summary     String    @db.Text
+  personality_traits   String[]  @default([])
+  pain_points          String[]  @default([])
+  motivation_drivers   String[]  @default([])
+  
+  tone_preference      String    @default("helpful")
+  communication_style  String    @default("casual")
+  preferred_features   String[]  @default([])
+  
+  total_prompts        Int       @default(0)
+  avg_sentiment        Float     @default(0.0)
+  confidence_score     Float     @default(0.0)
+  
+  last_analyzed_at     DateTime  @default(now())
+  updated_at           DateTime  @updatedAt
+  
+  user                 user_profile @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+  
+  @@index([user_id])
+}
+
+model analysis_logs {
+  id                   String    @id @default(uuid())
+  user_id              String
+  analysis_type        String
+  prompts_analyzed     Int
+  confidence           Float
+  key_insights         Json
+  created_at           DateTime  @default(now())
+  
+  @@index([user_id, created_at])
+}
