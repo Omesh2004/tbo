@@ -1,0 +1,93 @@
+{
+  "flights": [
+    {
+      "id": "FL-MAD-ATH-001",
+      "origin": "MAD",
+      "destination": "ATH",
+      "departure": "2026-03-15T08:00:00",
+      "arrival": "2026-03-15T11:30:00",
+      "airline": "Iberia Express",
+      "price": 120,
+      "currency": "USD",
+      "seats_available": 5
+    },
+    {
+      "id": "FL-MAD-ATH-002",
+      "origin": "MAD",
+      "destination": "ATH",
+      "departure": "2026-03-15T14:30:00",
+      "arrival": "2026-03-15T18:00:00",
+      "airline": "Lufthansa",
+      "price": 150,
+      "currency": "USD",
+      "seats_available": 8
+    }
+  ],
+  "hotels": [
+    {
+      "id": "HTL-ATH-001",
+      "name": "Hotel Grande Athens",
+      "city": "Athens",
+      "stars": 4,
+      "price_per_night": 85,
+      "currency": "USD",
+      "check_in": "2026-03-15",
+      "check_out": "2026-03-17",
+      "rooms_available": 12
+    },
+    {
+      "id": "HTL-ATH-002",
+      "name": "Acropolis View Hotel",
+      "city": "Athens",
+      "stars": 5,
+      "price_per_night": 180,
+      "currency": "USD",
+      "check_in": "2026-03-15",
+      "check_out": "2026-03-17",
+      "rooms_available": 5
+    }
+  ],
+  "hotel_price_range": {
+    "min": 85,
+    "max": 180,
+    "avg": 132.5,
+    "currency": "USD"
+  },
+  "activities": [
+    {
+      "id": "act-001",
+      "name": "Acropolis Guided Tour",
+      "location": "Athens",
+      "price": 45.0,
+      "currency": "USD",
+      "duration": "3 hours",
+      "rating": 4.8
+    },
+    {
+      "id": "act-002",
+      "name": "Parthenon & Ancient Agora",
+      "location": "Athens",
+      "price": 55.0,
+      "currency": "USD",
+      "duration": "4 hours",
+      "rating": 4.9
+    },
+    {
+      "id": "act-003",
+      "name": "Mount Lycabettus Sunset Tour",
+      "location": "Athens",
+      "price": 35.0,
+      "currency": "USD",
+      "duration": "2 hours",
+      "rating": 4.7
+    }
+  ],
+  "source": "TBO_TEKTRAVELS",
+  "fetch_mode": "mock",
+  "api_status": {
+    "flights": "error",
+    "flights_error": "ValueError: TekTravels Flight API endpoint 'Invalid Resource Requested' - API format may have changed or credentials invalid. This may indicate the test credentials are expired or the API endpoint format changed.",
+    "hotels": "error",
+    "hotels_error": "Exception: TBO Hotel API credentials are invalid (HTTP 401). Please check TBO_HOTEL_USERNAME and TBO_HOTEL_PASSWORD"
+  }
+}

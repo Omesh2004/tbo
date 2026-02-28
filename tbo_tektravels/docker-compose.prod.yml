@@ -1,0 +1,81 @@
+# Production Docker Compose Override
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+# This file overrides development settings with production optimizations
+
+version: '3.8'
+
+services:
+  tbo-redis:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  tbo-zookeeper:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  tbo-kafka:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '1'
+          memory: 512M
+
+  tbo-qdrant:
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+  tbo-pipeline:
+    # Remove volume mount for code (use Docker image instead)
+    volumes:
+      # Only mount data directories, not entire /app
+      - /app/data
+
+    # Resource constraints for production
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+    restart: always
+
+    # Production logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+        labels: "app=tbo-pipeline,env=production"
+
+    # Environment overrides for production
+    environment:
+      LOG_LEVEL: WARNING
+      DEBUG: "false"

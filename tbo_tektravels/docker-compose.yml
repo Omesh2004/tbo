@@ -1,0 +1,145 @@
+version: '3.8'
+
+services:
+  # Redis - Stream data store and caching
+  tbo-redis:
+    image: redis:7-alpine
+    container_name: tbo-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - travel-tbo-network
+    restart: unless-stopped
+
+  # Zookeeper - Kafka coordination
+  tbo-zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: tbo-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_SYNC_LIMIT: 5
+      ZOOKEEPER_INIT_LIMIT: 10
+    ports:
+      - "2181:2181"
+    networks:
+      - travel-tbo-network
+    restart: unless-stopped
+
+  # Kafka - Event streaming broker
+  tbo-kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: tbo-kafka
+    depends_on:
+      - tbo-zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: tbo-zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://tbo-kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_RETENTION_HOURS: 24
+    healthcheck:
+      test: ["CMD", "bash", "-c", "kafka-broker-api-versions.sh --bootstrap-server tbo-kafka:9092"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - travel-tbo-network
+    restart: unless-stopped
+
+  # Qdrant - Vector database for semantic search
+  tbo-qdrant:
+    image: qdrant/qdrant:latest
+    container_name: tbo-qdrant
+    ports:
+      - "6333:6333"  # REST API
+      - "6334:6334"  # gRPC API
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    environment:
+      QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:6333/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - travel-tbo-network
+    restart: unless-stopped
+
+  # TBO Travel Data Pipeline - Main application
+  tbo-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tbo-pipeline
+    depends_on:
+      tbo-redis:
+        condition: service_healthy
+      tbo-kafka:
+        condition: service_healthy
+      tbo-qdrant:
+        condition: service_healthy
+    environment:
+      # Redis Configuration
+      REDIS_HOST: tbo-redis
+      REDIS_PORT: 6379
+
+      # Kafka Configuration
+      KAFKA_BROKER: tbo-kafka:9092
+      KAFKA_TOPIC: ${KAFKA_TOPIC:-travel-data-raw-tbo}
+
+      # Qdrant Configuration
+      QDRANT_URL: http://tbo-qdrant:6333
+      QDRANT_API_KEY: ${QDRANT_API_KEY:-}
+      QDRANT_COLLECTION: ${QDRANT_COLLECTION:-travel_data}
+      QDRANT_VECTOR_DIM: ${QDRANT_VECTOR_DIM:-384}
+      QDRANT_DISTANCE: ${QDRANT_DISTANCE:-Cosine}
+
+      # TBO Hotel API Configuration
+      TBO_HOTEL_USERNAME: ${TBO_HOTEL_USERNAME:-Hackathon}
+      TBO_HOTEL_PASSWORD: ${TBO_HOTEL_PASSWORD:-Hackathon@1234}
+      TBO_HOTEL_BASE_URL: ${TBO_HOTEL_BASE_URL:-http://api.tbotechnology.in/TBOHolidays_HotelAPI}
+
+      # TekTravels Flight API Configuration
+      TEKTRAVELS_FLIGHT_USER_ID: ${TEKTRAVELS_FLIGHT_USER_ID:-Hackathon}
+      TEKTRAVELS_FLIGHT_PASSWORD: ${TEKTRAVELS_FLIGHT_PASSWORD:-Hackathon@123}
+      TEKTRAVELS_FLIGHT_BASE_URL: ${TEKTRAVELS_FLIGHT_BASE_URL:-https://api.tektravels.com}
+
+    volumes:
+      # For development - live code reload
+      - .:/app
+
+    networks:
+      - travel-tbo-network
+
+    restart: unless-stopped
+
+    # Ensure proper logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  redis_data:
+    driver: local
+  qdrant_storage:
+    driver: local
+
+networks:
+  travel-tbo-network:
+    driver: bridge

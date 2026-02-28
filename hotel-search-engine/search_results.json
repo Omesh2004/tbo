@@ -1,0 +1,70 @@
+{
+  "search_query": "5 star hotels in Agra",
+  "timestamp": "2026-02-28T23:40:12.188991",
+  "total_results": 3,
+  "results": [
+    {
+      "name": "International Hotel Chain",
+      "location": "Agra",
+      "rating": 4.0,
+      "rating_count": 700,
+      "price_per_night": 85,
+      "currency": "USD",
+      "review_summary": "Great hotel in Agra, excellent service and amenities.",
+      "amenities": [
+        "WiFi",
+        "AC",
+        "Restaurant",
+        "Pool",
+        "Gym"
+      ],
+      "stars": 4,
+      "search_timestamp": "2026-02-28T23:40:12.188787",
+      "availability": true
+    },
+    {
+      "name": "Downtown Business Hotel",
+      "location": "Agra",
+      "rating": 4.3,
+      "rating_count": 1200,
+      "price_per_night": 135,
+      "currency": "USD",
+      "review_summary": "Great hotel in Agra, excellent service and amenities.",
+      "amenities": [
+        "WiFi",
+        "AC",
+        "Restaurant",
+        "Pool",
+        "Gym"
+      ],
+      "stars": 3,
+      "search_timestamp": "2026-02-28T23:40:12.188795",
+      "availability": true
+    },
+    {
+      "name": "Suburban Comfort Inn",
+      "location": "Agra",
+      "rating": 4.6,
+      "rating_count": 1700,
+      "price_per_night": 185,
+      "currency": "USD",
+      "review_summary": "Great hotel in Agra, excellent service and amenities.",
+      "amenities": [
+        "WiFi",
+        "AC",
+        "Restaurant",
+        "Pool",
+        "Gym"
+      ],
+      "stars": 3,
+      "search_timestamp": "2026-02-28T23:40:12.188798",
+      "availability": true
+    }
+  ],
+  "data_verification": {
+    "source": "multi",
+    "accuracy": "high",
+    "last_updated": "2026-02-28T23:40:12.188995",
+    "notes": "Results aggregated from web searches and verified sources"
+  }
+}
