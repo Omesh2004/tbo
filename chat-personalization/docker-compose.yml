@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: chat_personalization_db
+    environment:
+      POSTGRES_USER: chat_user
+      POSTGRES_PASSWORD: chat_password
+      POSTGRES_DB: chat_personalization
+    ports:
+      - "5433:5432"
+    volumes:
+      - chat_personalization_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chat_user -d chat_personalization"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - chat_personalization_network
+
+  chat-personalization-api:
+    build: .
+    container_name: chat_personalization_api
+    environment:
+      DATABASE_URL: postgresql://chat_user:chat_password@postgres:5432/chat_personalization
+      APP_NAME: Chat Personalization Service
+      DEBUG: "False"
+      ENVIRONMENT: production
+      LOG_LEVEL: INFO
+      PORT: 8001
+      HOST: 0.0.0.0
+    ports:
+      - "8001:8001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - chat_personalization_network
+    volumes:
+      - ./app:/app/app
+
+volumes:
+  chat_personalization_data:
+
+networks:
+  chat_personalization_network:
+    driver: bridge
