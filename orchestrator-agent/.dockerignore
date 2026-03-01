@@ -1,0 +1,58 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.Python
+*.egg
+dist
+build
+.pytest_cache
+.coverage
+*.egg-info/
+.venv
+venv/
+ENV/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Testing
+test_api.py
+pytest.ini
+
+# Documentation
+*.md
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (if any frontend)
+node_modules/
+npm-debug.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3

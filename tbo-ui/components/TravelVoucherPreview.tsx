@@ -82,8 +82,17 @@ export default function TravelVoucherPreview({
     const clone = el.cloneNode(true) as HTMLElement;
     clone.querySelectorAll('.no-print, [class*="print:hidden"]').forEach((n) => n.remove());
     clone.id = 'voucher-print-target';
+    // Keep voucher at 210mm width when printing: outer scrollable, inner fixed width
     clone.style.cssText =
-      'position:fixed !important; inset:0 !important; left:0 !important; top:0 !important; width:100% !important; height:100% !important; background:#fff !important; z-index:999999 !important; overflow:auto !important; padding:0.5in !important; margin:0 !important;';
+      'position:fixed !important; inset:0 !important; left:0 !important; top:0 !important; right:0 !important; bottom:0 !important; width:100% !important; height:100% !important; background:#fff !important; z-index:999999 !important; overflow:auto !important; padding:0.5in !important; margin:0 !important; box-sizing:border-box !important;';
+    const inner = clone.querySelector('.voucher-inner') as HTMLElement;
+    if (inner) {
+      inner.style.width = '210mm';
+      inner.style.minWidth = '210mm';
+      inner.style.maxWidth = '210mm';
+      inner.style.marginLeft = 'auto';
+      inner.style.marginRight = 'auto';
+    }
     document.body.appendChild(clone);
     const cleanup = () => {
       document.getElementById('voucher-print-target')?.remove();
@@ -96,10 +105,10 @@ export default function TravelVoucherPreview({
   };
 
   return (
-    <div ref={containerRef} className="voucher-print-container bg-white max-w-fit shrink-0" style={{ minWidth: '210mm' }}>
+    <div ref={containerRef} className="voucher-print-container bg-white shrink-0" style={{ minWidth: '210mm', width: '210mm', maxWidth: '100%', margin: '0 auto', boxSizing: 'border-box' }}>
       <title className="hidden print:block">Travel Voucher - {quote.destination}</title>
 
-      <div className="w-full bg-white text-gray-900" style={{ width: '210nm', maxWidth: '100%', minWidth: '210mm', marginLeft: 'auto', marginRight: 'auto' }}>
+      <div className="voucher-inner bg-white text-gray-900" style={{ width: '210mm', minWidth: '210mm', maxWidth: '100%', marginLeft: 'auto', marginRight: 'auto', boxSizing: 'border-box' }}>
         <div className="flex items-start justify-between border-b border-gray-200 pb-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-orange-500 flex items-center justify-center">

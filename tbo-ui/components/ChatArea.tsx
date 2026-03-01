@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ChatMessage, HotelOption, TransportOption, QuoteSummary, RecommendedHotel } from '@/lib/types';
 import HotelOptions from './HotelOptions';
 import TransportOptions from './TransportOptions';
+import TravelPlanForm, { TravelPlanDetails } from './TravelPlanForm';
 
 interface ChatAreaProps {
   messages: ChatMessage[];
@@ -24,6 +25,9 @@ interface ChatAreaProps {
   quote?: QuoteSummary;
   recommendedHotels?: RecommendedHotel[];
   onGeneratePDF?: () => void;
+  showTravelPlanForm?: boolean;
+  travelPlanFormDestination?: string;
+  onTravelPlanSubmit?: (details: TravelPlanDetails) => void;
 }
 
 export default function ChatArea({
@@ -43,6 +47,9 @@ export default function ChatArea({
   quote,
   recommendedHotels = [],
   onGeneratePDF,
+  showTravelPlanForm = false,
+  travelPlanFormDestination = '',
+  onTravelPlanSubmit,
 }: ChatAreaProps) {
   const [input, setInput] = React.useState('');
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
@@ -64,8 +71,9 @@ export default function ChatArea({
 
   return (
     <div className="flex flex-col h-full bg-white">
-      {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6 bg-white scrollbar-hidden flex flex-col">
+      {/* Messages Container - max-width + center on desktop for consistent alignment */}
+      <div className="flex-1 overflow-y-auto flex flex-col">
+        <div className="flex-1 p-4 lg:p-6 space-y-6 bg-white scrollbar-hidden flex flex-col w-full max-w-5xl mx-auto">
         {messages.length === 0 && !isLoading ? (
           <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-12">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-orange-500 flex items-center justify-center mb-4">
@@ -272,15 +280,24 @@ export default function ChatArea({
           </React.Fragment>
         ))}
 
+        {/* In-chat form to collect travel details when user asked for a plan */}
+        {showTravelPlanForm && onTravelPlanSubmit && (
+          <TravelPlanForm
+            initialDestination={travelPlanFormDestination}
+            onSubmit={onTravelPlanSubmit}
+            disabled={isLoading}
+          />
+        )}
+
         <div ref={messagesEndRef} />
           </>
         )}
-
+        </div>
       </div>
-      {/* Input Area */}
-      <div className="bg-white border-t border-gray-200 p-4 lg:p-6">
-        <div className="flex gap-2 items-center">
-          <div className="flex-1 flex items-center bg-gray-100 rounded-full px-4 py-2 gap-2">
+      {/* Input Area - same max-width so aligned with messages */}
+      <div className="bg-white border-t border-gray-200 p-4 lg:p-6 flex justify-center">
+        <div className="w-full max-w-5xl mx-auto flex gap-2 items-center">
+          <div className="flex-1 flex items-center bg-gray-100 rounded-full px-4 py-2 gap-2 min-w-0">
             <input
               type="text"
               value={input}

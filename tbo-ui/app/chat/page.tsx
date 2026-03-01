@@ -22,6 +22,7 @@ import {
   mockRecommendedHotels,
 } from '@/lib/mockData';
 import { ChatMessage, HotelOption, QuoteSummary } from '@/lib/types';
+import type { TravelPlanDetails } from '@/components/TravelPlanForm';
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -35,6 +36,17 @@ export default function Home() {
   const [voucherQuote, setVoucherQuote] = useState<QuoteSummary>(mockQuote);
   const [voucherHotel, setVoucherHotel] = useState<HotelOption | null>(null);
   const [voucherTransport, setVoucherTransport] = useState<typeof mockTransport[0] | null>(null);
+  const [showTravelPlanForm, setShowTravelPlanForm] = useState(false);
+  const [travelPlanFormDestination, setTravelPlanFormDestination] = useState('');
+
+  // Try to extract destination from user message (e.g. "trip to Singapore" -> Singapore)
+  const extractDestination = (text: string): string => {
+    const lower = text.toLowerCase();
+    const toMatch = lower.match(/(?:to|visit|in|for)\s+([a-z][a-z\s]{1,25}?)(?=\s|,|\.|$)/i);
+    if (toMatch) return toMatch[1].trim().replace(/\s+/g, ' ');
+    const cityMatch = text.match(/\b(Singapore|Paris|London|Dubai|Bali|Tokyo|New York|Mumbai|Delhi|Bangalore)\b/i);
+    return cityMatch ? cityMatch[1] : '';
+  };
 
   // Detect if user message indicates they want a travel plan
   const isTravelPlanIntent = (text: string) => {
@@ -209,7 +221,36 @@ export default function Home() {
 
   // Triggered when user sends a text message
   const handleSendMessage = (message: string) => {
-    processMessage(message, false); // false = don't speak back
+    const text = message.trim();
+    if (!text) return;
+    // If user is asking for a travel plan, first show the details form instead of calling the API
+    if (isTravelPlanIntent(text) && !isLoading) {
+      const userMsg: ChatMessage = {
+        id: Date.now().toString(),
+        sender: 'user',
+        message: text,
+      };
+      setMessages((prev) => [...prev, userMsg]);
+      const agentMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        sender: 'agent',
+        avatar: mockAgent.image,
+        name: mockAgent.name,
+        message: "I'd love to help plan your trip! Please share a few details below so I can create your itinerary.",
+      };
+      setMessages((prev) => [...prev, agentMsg]);
+      setTravelPlanFormDestination(extractDestination(text));
+      setShowTravelPlanForm(true);
+      return;
+    }
+    processMessage(text, false);
+  };
+
+  const handleTravelPlanSubmit = (details: TravelPlanDetails) => {
+    setShowTravelPlanForm(false);
+    const startFormatted = new Date(details.startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const summary = `Create a travel plan from ${details.fromCity} to ${details.destination}, ${details.numberOfDays} days, starting ${startFormatted}, for ${details.travelers} traveler${details.travelers > 1 ? 's' : ''}.`;
+    processMessage(summary, false);
   };
 
   // Triggered when user clicks the Microphone
@@ -301,6 +342,9 @@ export default function Home() {
               quote={mockQuote}
               recommendedHotels={mockRecommendedHotels}
               onGeneratePDF={handleGeneratePDF}
+              showTravelPlanForm={showTravelPlanForm}
+              travelPlanFormDestination={travelPlanFormDestination}
+              onTravelPlanSubmit={handleTravelPlanSubmit}
             />
           </div>
         </div>
@@ -309,14 +353,15 @@ export default function Home() {
       {/* Travel Voucher PDF Preview Dialog */}
       <Dialog open={showVoucherPreview} onOpenChange={setShowVoucherPreview}>
         <DialogContent
-          className="!max-w-[96vw] w-full min-w-[210mm] max-h-[90vh] overflow-x-auto overflow-y-auto p-0 gap-0 sm:max-w-[96vw]"
+          className="!max-w-[96vw] w-full max-h-[90vh] overflow-auto p-0 gap-0 sm:!max-w-[96vw]"
           showCloseButton={true}
         >
           <DialogHeader className="sr-only">
             <DialogTitle>Travel Voucher Preview</DialogTitle>
           </DialogHeader>
-          <div className="p-6 min-w-[210mm] w-max max-w-full">
-            <TravelVoucherPreview
+          <div className="p-6 flex justify-center" style={{ minWidth: '210mm' }}>
+            <div style={{ width: '210mm', flexShrink: 0 }}>
+              <TravelVoucherPreview
               quote={voucherQuote}
               selectedHotel={voucherHotel}
               selectedTransport={voucherTransport}
@@ -324,6 +369,7 @@ export default function Home() {
               onClose={() => setShowVoucherPreview(false)}
               showActions={true}
             />
+            </div>
           </div>
         </DialogContent>
       </Dialog>

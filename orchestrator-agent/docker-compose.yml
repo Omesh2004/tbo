@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+  # Initialize Ollama with models
+  model-init:
+    image: curlimages/curl:latest
+    container_name: orchestrator-model-init
+    depends_on:
+      - ollama
+    volumes:
+      - ./scripts:/scripts:ro
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    command: >
+      sh -c "
+      echo '[INIT] Waiting for Ollama service...' &&
+      for i in {1..60}; do
+        if curl -s http://ollama:11434/api/tags > /dev/null 2>&1; then
+          echo '[INIT] ✓ Ollama is ready' &&
+          echo '[INIT] Pulling phi4:latest...' &&
+          curl -s -X POST http://ollama:11434/api/pull -H 'Content-Type: application/json' -d '{\"name\":\"phi4:latest\",\"stream\":false}' &&
+          echo '[INIT] ✓ Phi4 pulled' &&
+          echo '[INIT] Pulling llama2:latest...' &&
+          curl -s -X POST http://ollama:11434/api/pull -H 'Content-Type: application/json' -d '{\"name\":\"llama2:latest\",\"stream\":false}' &&
+          echo '[INIT] ✓ Llama2 pulled' &&
+          break;
+        fi &&
+        echo '[INIT] Attempt $$i - Waiting...' &&
+        sleep 2;
+      done &&
+      echo '[INIT] ✓ Models initialization complete'
+      "
+    networks:
+      - tbo-network
+    restart: on-failure
+
+  orchestrator-agent:
+    build: .
+    container_name: orchestrator-agent
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DEBUG=false
+      - OLLAMA_HOST=http://ollama:11434
+      - DATABASE_URL=postgresql://user:password@postgres:5432/orchestrator
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PERSONALIZATION_AGENT_URL=http://personalization-agent:8001
+      - HOTEL_SEARCH_AGENT_URL=http://hotel-search-agent:8002
+      - AMADEUS_AGENT_URL=http://amadeus-agent:8003
+    depends_on:
+      model-init:
+        condition: service_completed_successfully
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+      ollama:
+        condition: service_started
+    networks:
+      - tbo-network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: orchestrator-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=orchestrator
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - tbo-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: orchestrator-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - tbo-network
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: orchestrator-ollama
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - tbo-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  ollama_data:
+
+networks:
+  tbo-network:
+    driver: bridge

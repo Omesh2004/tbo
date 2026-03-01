@@ -1,0 +1,78 @@
+"""Prisma Schema for Orchestrator Agent"""
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-py"
+}
+
+model Query {
+  id                  String    @id @default(cuid())
+  user_id             String?
+  raw_query           String
+  complexity_level    String    // 'simple' or 'complex'
+  model_used          String    // 'phi4' or 'llama2'
+  model_response      String
+  routed_agents       String[]  // agents that processed this query
+  timestamp           DateTime  @default(now())
+  response_time_ms    Int?      // milliseconds
+  
+  @@index([user_id, timestamp])
+  @@index([complexity_level])
+}
+
+model AgentResponse {
+  id                  String    @id @default(cuid())
+  query_id            String
+  agent_name          String    // 'personalization', 'hotel_search', 'amadeus'
+  agent_response      Json
+  response_status     String    // 'success' or 'error'
+  response_time_ms    Int?
+  timestamp           DateTime  @default(now())
+  
+  @@index([query_id, agent_name])
+  @@index([timestamp])
+}
+
+model UserProfile {
+  id                  String    @id @default(cuid())
+  user_id             String    @unique
+  preferences         Json      // User preferences stored as JSON
+  travel_history      Json      // Previous searches/bookings
+  model_preference    String?   // User's preferred model
+  last_query_date     DateTime?
+  total_queries       Int       @default(0)
+  created_at          DateTime  @default(now())
+  updated_at          DateTime  @updatedAt
+  
+  @@index([user_id])
+}
+
+model ModelPerformance {
+  id                  String    @id @default(cuid())
+  model_name          String    // 'phi4' or 'llama2'
+  total_queries       Int       @default(0)
+  avg_response_time   Float     @default(0.0)
+  success_rate        Float     @default(0.0)
+  error_count         Int       @default(0)
+  last_updated        DateTime  @updatedAt
+  
+  @@unique([model_name])
+  @@index([model_name])
+}
+
+model AgentMetrics {
+  id                  String    @id @default(cuid())
+  agent_name          String    // agent service name
+  total_requests      Int       @default(0)
+  successful_requests Int       @default(0)
+  failed_requests     Int       @default(0)
+  avg_response_time   Float     @default(0.0)
+  last_updated        DateTime  @updatedAt
+  
+  @@unique([agent_name])
+  @@index([agent_name])
+}

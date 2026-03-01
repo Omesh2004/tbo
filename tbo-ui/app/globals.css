@@ -215,7 +215,7 @@
     right: 0 !important;
     bottom: 0 !important;
     width: 100% !important;
-    max-width: none !important;
+    max-width: 100% !important;
     height: auto !important;
     min-height: 100% !important;
     margin: 0 !important;
@@ -223,6 +223,15 @@
     background: white !important;
     z-index: 999999 !important;
     overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+  #voucher-print-target .voucher-inner,
+  #voucher-print-target .voucher-print-container {
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
   #voucher-print-target .no-print,
   #voucher-print-target [class*="print:hidden"] {
