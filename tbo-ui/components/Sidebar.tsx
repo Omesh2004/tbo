@@ -153,11 +153,11 @@ export default function Sidebar({
 
       {/* Map Section */}
       <div className="px-3 py-4 border-t border-gray-200 flex-shrink-0">
-        <div className="rounded-lg overflow-hidden h-28 bg-gray-200 flex items-center justify-center">
+        <div className="rounded-lg overflow-hidden h-48 bg-gray-200 flex items-center justify-center">
           <div className="text-center">
             <MapPin size={20} className="text-blue-600 mx-auto mb-1" />
-            <p className="text-xs text-gray-600">Singapore</p>
-            <p className="text-xs text-gray-600">Changi Airport</p>
+            <p className="text-xs text-gray-600">Patna</p>
+            <p className="text-xs text-gray-600">Jay Prakash International Airport</p>
           </div>
         </div>
       </div>
