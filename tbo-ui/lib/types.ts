@@ -84,6 +84,9 @@ export interface ChatMessage {
   name?: string;
   message: string;
   timestamp?: string;
+  isLoading?: boolean;
+  agentActivity?: string[];
+  currentActivity?: string;
 }
 
 export interface Report {
