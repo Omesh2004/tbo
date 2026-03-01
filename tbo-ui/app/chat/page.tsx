@@ -309,13 +309,13 @@ export default function Home() {
       {/* Travel Voucher PDF Preview Dialog */}
       <Dialog open={showVoucherPreview} onOpenChange={setShowVoucherPreview}>
         <DialogContent
-          className="w-[95vw] min-w-[800px] max-w-6xl max-h-[90vh] overflow-y-auto p-0 gap-0"
+          className="!max-w-[96vw] w-full min-w-[210mm] max-h-[90vh] overflow-x-auto overflow-y-auto p-0 gap-0 sm:max-w-[96vw]"
           showCloseButton={true}
         >
           <DialogHeader className="sr-only">
             <DialogTitle>Travel Voucher Preview</DialogTitle>
           </DialogHeader>
-          <div className="p-6 min-w-0">
+          <div className="p-6 min-w-[210mm] w-max max-w-full">
             <TravelVoucherPreview
               quote={voucherQuote}
               selectedHotel={voucherHotel}

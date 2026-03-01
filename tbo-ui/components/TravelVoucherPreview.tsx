@@ -96,10 +96,10 @@ export default function TravelVoucherPreview({
   };
 
   return (
-    <div ref={containerRef} className="voucher-print-container bg-white w-full min-w-[210mm]">
+    <div ref={containerRef} className="voucher-print-container bg-white max-w-fit shrink-0" style={{ minWidth: '210mm' }}>
       <title className="hidden print:block">Travel Voucher - {quote.destination}</title>
 
-      <div className="w-full min-w-[210mm] max-w-[210mm] mx-auto bg-white text-gray-900">
+      <div className="w-full bg-white text-gray-900" style={{ width: 'fit-content', maxWidth: '100%', minWidth: '210mm', marginLeft: 'auto', marginRight: 'auto' }}>
         <div className="flex items-start justify-between border-b border-gray-200 pb-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-orange-500 flex items-center justify-center">
