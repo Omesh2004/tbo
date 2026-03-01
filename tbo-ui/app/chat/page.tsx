@@ -4,10 +4,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import ChatArea from '@/components/ChatArea';
-import QuotePanel from '@/components/QuotePanel';
+import TravelVoucherPreview from '@/components/TravelVoucherPreview';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import {
   mockAgent,
-  mockChatMessages,
   mockHotels,
   mockTransport,
   mockQuote,
@@ -16,16 +21,34 @@ import {
   mockReports,
   mockRecommendedHotels,
 } from '@/lib/mockData';
-import { ChatMessage } from '@/lib/types';
+import { ChatMessage, HotelOption, QuoteSummary } from '@/lib/types';
 
 export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>(mockChatMessages);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [selectedHotel, setSelectedHotel] = useState<string | undefined>();
   const [selectedTransport, setSelectedTransport] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [showQuotePanel, setShowQuotePanel] = useState(false);
+  const [travelPlanResponseMessageId, setTravelPlanResponseMessageId] = useState<string | null>(null);
+  const [showVoucherPreview, setShowVoucherPreview] = useState(false);
+  const [voucherQuote, setVoucherQuote] = useState<QuoteSummary>(mockQuote);
+  const [voucherHotel, setVoucherHotel] = useState<HotelOption | null>(null);
+  const [voucherTransport, setVoucherTransport] = useState<typeof mockTransport[0] | null>(null);
+
+  // Detect if user message indicates they want a travel plan
+  const isTravelPlanIntent = (text: string) => {
+    const lower = text.toLowerCase();
+    const keywords = [
+      'travel plan', 'plan my trip', 'plan a trip', 'plan our trip',
+      'book a trip', 'book my trip', 'i want a travel plan', 'i need a travel plan',
+      'create a travel plan', 'get a travel plan', 'hotels in', 'hotels for',
+      'flights to', 'flights for', 'options for', 'looking for hotels',
+      'recommend hotels', 'hotel options', 'transport options', 'vacation to',
+      'trip to', 'trip for', 'travel to', 'going to', 'visit '
+    ];
+    return keywords.some(k => lower.includes(k));
+  };
 
   const recognitionRef = useRef<any>(null);
 
@@ -79,29 +102,10 @@ export default function Home() {
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    
-    // Show QuotePanel on first user interaction
-    if (!showQuotePanel) {
-      setShowQuotePanel(true);
-    }
 
-    // Add thinking message while processing with agent activities
-    const thinkingMessageId = (Date.now() + 1).toString();
-    const thinkingMessage: ChatMessage = {
-      id: thinkingMessageId,
-      sender: 'agent',
-      avatar: mockAgent.image,
-      name: mockAgent.name,
-      message: 'Processing your request...',
-      isLoading: true,
-      agentActivity: ['🔍 Analyzing request', '🌐 Searching for options', '💭 Generating recommendations'],
-      currentActivity: '🔍 Analyzing request',
-    };
+    const userRequestedTravelPlan = isTravelPlanIntent(text);
 
-    setMessages((prev) => [...prev, thinkingMessage]);
-    setIsLoading(true);
-
-    // Simulate agent activity progression
+    // Only show the full "planning" loading state (steps) when user asked for a travel plan
     const activitySequence = [
       '🔍 Analyzing request',
       '🌐 Searching for hotels & flights',
@@ -110,8 +114,24 @@ export default function Home() {
       '🎯 Generating recommendations',
     ];
 
+    const thinkingMessageId = (Date.now() + 1).toString();
+    const thinkingMessage: ChatMessage = {
+      id: thinkingMessageId,
+      sender: 'agent',
+      avatar: mockAgent.image,
+      name: mockAgent.name,
+      message: '',
+      isLoading: true,
+      agentActivity: userRequestedTravelPlan ? activitySequence : [],
+      currentActivity: userRequestedTravelPlan ? activitySequence[0] : undefined,
+    };
+
+    setMessages((prev) => [...prev, thinkingMessage]);
+    setIsLoading(true);
+
     let currentActivityIndex = 0;
     const activityInterval = setInterval(() => {
+      if (!userRequestedTravelPlan) return;
       if (currentActivityIndex < activitySequence.length - 1) {
         currentActivityIndex++;
         setMessages((prev) =>
@@ -125,7 +145,7 @@ export default function Home() {
           )
         );
       }
-    }, 800); // Update activity every 800ms
+    }, 800);
 
     try {
       // 1. Send text to Gemini API (or your AI endpoint)
@@ -156,6 +176,11 @@ export default function Home() {
             : msg
         )
       );
+
+      // Show travel plan results (quote, hotels, transport) only when user asked for a travel plan
+      if (userRequestedTravelPlan) {
+        setTravelPlanResponseMessageId(thinkingMessageId);
+      }
 
       // 3. ONLY play the ElevenLabs audio if the user used the microphone
       if (isVoiceInput) {
@@ -221,11 +246,14 @@ export default function Home() {
   };
 
   const handleGeneratePDF = () => {
-    alert('PDF generation feature will be implemented');
+    setVoucherQuote(mockQuote);
+    setVoucherHotel(selectedHotel ? mockHotels.find((h) => h.id === selectedHotel) ?? null : null);
+    setVoucherTransport(selectedTransport ? mockTransport.find((t) => t.id === selectedTransport) ?? null : null);
+    setShowVoucherPreview(true);
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-50 overflow-hidden">
+    <div className="flex flex-col h-screen bg-gray-50 overflow-hidden" data-chat-app>
       {/* Header */}
       <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
 
@@ -255,38 +283,50 @@ export default function Home() {
         />
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col lg:flex-row gap-4 overflow-hidden p-4 bg-white">
-          {/* Center: Chat Area */}
-          <div className="flex-1 flex flex-col overflow-hidden min-w-0">
-            <div className="flex-1 bg-white rounded-lg shadow flex flex-col overflow-hidden">
-              <ChatArea
-                messages={messages}
-                onSendMessage={handleSendMessage}
-                onToggleVoice={handleToggleVoice}
-                hotels={mockHotels}
-                selectedHotelId={selectedHotel}
-                onSelectHotel={setSelectedHotel}
-                transportOptions={mockTransport}
-                selectedTransportId={selectedTransport}
-                onSelectTransport={setSelectedTransport}
-                isLoading={isLoading}
-                isRecording={isRecording}
-              />
-            </div>
+        <div className="flex-1 flex flex-col overflow-hidden p-4 bg-white">
+          <div className="flex-1 bg-white rounded-lg shadow flex flex-col overflow-hidden min-w-0">
+            <ChatArea
+              messages={messages}
+              onSendMessage={handleSendMessage}
+              onToggleVoice={handleToggleVoice}
+              hotels={mockHotels}
+              selectedHotelId={selectedHotel}
+              onSelectHotel={setSelectedHotel}
+              transportOptions={mockTransport}
+              selectedTransportId={selectedTransport}
+              onSelectTransport={setSelectedTransport}
+              isLoading={isLoading}
+              isRecording={isRecording}
+              travelPlanResponseMessageId={travelPlanResponseMessageId}
+              quote={mockQuote}
+              recommendedHotels={mockRecommendedHotels}
+              onGeneratePDF={handleGeneratePDF}
+            />
           </div>
-
-          {/* Right: Quote Panel - Show only after user interaction */}
-          {showQuotePanel && (
-            <div className="w-full lg:w-72 flex-shrink-0 overflow-y-auto animate-slideInRight">
-              <QuotePanel
-                quote={mockQuote}
-                recommendedHotels={mockRecommendedHotels}
-                onGeneratePDF={handleGeneratePDF}
-              />
-            </div>
-          )}
         </div>
       </div>
+
+      {/* Travel Voucher PDF Preview Dialog */}
+      <Dialog open={showVoucherPreview} onOpenChange={setShowVoucherPreview}>
+        <DialogContent
+          className="w-[95vw] min-w-[800px] max-w-6xl max-h-[90vh] overflow-y-auto p-0 gap-0"
+          showCloseButton={true}
+        >
+          <DialogHeader className="sr-only">
+            <DialogTitle>Travel Voucher Preview</DialogTitle>
+          </DialogHeader>
+          <div className="p-6 min-w-0">
+            <TravelVoucherPreview
+              quote={voucherQuote}
+              selectedHotel={voucherHotel}
+              selectedTransport={voucherTransport}
+              agent={mockAgent}
+              onClose={() => setShowVoucherPreview(false)}
+              showActions={true}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
