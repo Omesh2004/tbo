@@ -200,6 +200,7 @@ services:
       - ENVIRONMENT=production
       - DEBUG=false
       - OLLAMA_HOST=http://ollama:11434
+      - LLAMA_MODEL=phi3:latest
       - DATABASE_URL=postgresql://${DB_USER:-user}:${DB_PASSWORD:-password}@postgres:5432/orchestrator
       - REDIS_HOST=redis
       - REDIS_PORT=6379
