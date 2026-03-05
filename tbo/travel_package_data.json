@@ -560,8 +560,141 @@
       ]
     }
   ],
-  "hotels": [],
-  "hotel_price_range": "No pricing available",
+  "hotels": [
+    {
+      "type": "hotel-offers",
+      "hotel": {
+        "type": "hotel",
+        "hotelId": "RTATHNOV",
+        "chainCode": "RT",
+        "dupeId": "700010523",
+        "name": "Novotel Athenes",
+        "cityCode": "ATH",
+        "latitude": 37.98959,
+        "longitude": 23.72493
+      },
+      "available": true,
+      "offers": [
+        {
+          "id": "ISIEV9LLLX",
+          "checkInDate": "2026-03-15",
+          "checkOutDate": "2026-03-17",
+          "rateCode": "1AD",
+          "boardType": "ROOM_ONLY",
+          "room": {
+            "type": "B1D",
+            "typeEstimated": {
+              "category": "SUPERIOR_ROOM",
+              "beds": 1,
+              "bedType": "DOUBLE"
+            },
+            "description": {
+              "text": "Advanced Micro Devices-Room only\nSuperior room with 1 double bed and sofa",
+              "lang": "EN"
+            }
+          },
+          "isLoyaltyRate": "Y",
+          "guests": {
+            "adults": 1
+          },
+          "price": {
+            "currency": "EUR",
+            "total": "140.00",
+            "variations": {
+              "average": {
+                "total": "70.00"
+              },
+              "changes": [
+                {
+                  "startDate": "2026-03-15",
+                  "endDate": "2026-03-16",
+                  "base": "90.00",
+                  "total": "90.00"
+                },
+                {
+                  "startDate": "2026-03-16",
+                  "endDate": "2026-03-17",
+                  "base": "50.00",
+                  "total": "50.00"
+                }
+              ]
+            }
+          },
+          "policies": {
+            "cancellations": [
+              {
+                "numberOfNights": 1,
+                "deadline": "2026-03-14T18:01:00+02:00",
+                "description": {
+                  "text": "No cancellation charge applies prior to 18:00(local time) on the day of arrival. Beyond that time, the first night will be charged."
+                },
+                "policyType": "CANCELLATION"
+              }
+            ],
+            "holdTime": {
+              "deadline": "2026-03-15T18:00:00"
+            },
+            "guarantee": {
+              "acceptedPayments": {
+                "creditCards": [
+                  "AX",
+                  "CA",
+                  "DC",
+                  "EC",
+                  "IK",
+                  "EE"
+                ],
+                "methods": [
+                  "TRAVEL_AGENT_ID",
+                  "CREDIT_CARD"
+                ],
+                "creditCardPolicies": [
+                  {
+                    "vendorCode": "AX"
+                  },
+                  {
+                    "vendorCode": "CA"
+                  },
+                  {
+                    "vendorCode": "DC"
+                  },
+                  {
+                    "vendorCode": "EC"
+                  },
+                  {
+                    "vendorCode": "IK"
+                  },
+                  {
+                    "vendorCode": "EE"
+                  }
+                ]
+              }
+            },
+            "paymentType": "guarantee",
+            "refundable": {
+              "cancellationRefund": "REFUNDABLE_UP_TO_DEADLINE"
+            }
+          },
+          "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers/ISIEV9LLLX",
+          "roomInformation": {
+            "description": "Advanced Micro Devices-Room only\nSuperior room with 1 double bed and sofa",
+            "type": "B1D",
+            "typeEstimated": {
+              "bedType": "DOUBLE",
+              "beds": 1,
+              "category": "SUPERIOR_ROOM"
+            }
+          }
+        }
+      ],
+      "self": "https://test.api.amadeus.com/v3/shopping/hotel-offers?hotelIds=RTATHNOV&adults=1&checkInDate=2026-03-15&checkOutDate=2026-03-17"
+    }
+  ],
+  "hotel_price_range": {
+    "min": 140.0,
+    "max": 140.0,
+    "avg": 140.0
+  },
   "activities": [
     {
       "type": "activity",
@@ -583,50 +716,50 @@
         "currencyCode": "EUR"
       },
       "pictures": [
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2E0MWI0NTJiLTBjZWUtNDI2OC05MmFmLTY3ZWNmMDQ5ZTZlMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2ZhYTllNDEwLTNlNTgtNDJiYy1hMTdjLTg4Y2FkOGQ5OTA0MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2JjZWVkMTZjLWIzYWUtNGJjMC1iMmE3LTYwN2FiYjNjZGMzYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzMwMTkxOWVjLTViNWEtNDJhNy05MDgxLTZjM2VlYTVhY2Y2MSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg5YWE5MGVjLWE2NTYtNDQ3NS1hZTVkLTIwMWJiN2VhMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZiYjc4NjA1LThkYmUtNDg1NS05ZjY4LThlYTg0MGFlOGRiOCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE4OTAzMzZhLWIxYTktNGZlYi05N2RhLTc0YjY0Njk1YmI3YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U2NWI5MDdkLWE0MjYtNGY4MS04Y2FhLTU3ZjEyNWM0YzJlZiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzZjg4ZGQyLTlkNjMtNGM2NS1hMDJmLWU3MGNjODkwNzE5NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzU2YzBlMGQ4LTBkZmUtNDcxZS05M2FlLWQ5MDNmNWI5MWQyNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAwN2ZhMDliLTZjYzAtNDEwYi1iMzk1LTE0NzBjYWI1YWI1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzc0MzA3ZGI4LTcwNjYtNGNlYS1iZmIxLTY1ZGUxYjNiNjgyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I0NWNmYTMzLWQ5NzgtNGI4Zi05MDM5LWYwYzE5ZjFhMzMwNiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM0YjFjMjkyLWU1ZmQtNDUyZi05NDFhLTRhZGNiMzdhZWE2OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE3ODZkZjVmLWVjMWEtNGRjOS1hN2IwLTE2OGMwYTI1NzdlZiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5ZGRmMDFiLWZiZjctNDE3ZC1hYjg3LTVkMGVlZWRhYTg2YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzMTJiNTE2LTE0YzQtNGMyNy1hM2IwLTkyMzQ3MmY0ZGEyZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5MTEzMzk2LTIxZWMtNGYwYi05OWY4LWE0MmUwNThkNjQzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MyYTJhMGFkLTQ0N2UtNDg2NS1hZWQxLWMyZWNjNGY3ODQ4OSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFkNjU5M2YzLTgwNDQtNDMzMC1hM2RlLTA2NWY1MDMxOTFhMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzhkMjMyNzA4LWNhZmYtNGExYy1iOGViLWU4OWRkM2MxN2M1NCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ4ODhjYjE2LWE1Y2QtNDFhZS1iZWNhLTA5ZmU0N2IxZDBlNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkZDk5MGExLWNiOTUtNGE0ZS05ZTJlLTkzYzg2NWQ5MWI3MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyMWQxNjE5LWQ2MDAtNGFmZS1iMWViLTVjOWYzNzVjNjE5MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFhYjg4YTljLWU1NjctNDVhZi05Nzg0LWMyOGEzMTU1YjY0MyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzY3NWMwNDBhLTFmMTctNDBhMS04NGRjLTdlYWYwOGM3ODAyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2FiMmNlNmY1LTFmODgtNDQ4OC1hMzFiLTFmNmQyZDgxODg3MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M1OWFjNmJhLTlmMzctNGM2Zi1hYTBkLTdlNWVhZjVkYmI3NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzI5NWVlYjFjLTgzZTItNDQzZi05NTI5LTI0ODE2Y2UzODE3ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzU2YzBlMGQ4LTBkZmUtNDcxZS05M2FlLWQ5MDNmNWI5MWQyNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFhYjg4YTljLWU1NjctNDVhZi05Nzg0LWMyOGEzMTU1YjY0MyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzY3NWMwNDBhLTFmMTctNDBhMS04NGRjLTdlYWYwOGM3ODAyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5ZGRmMDFiLWZiZjctNDE3ZC1hYjg3LTVkMGVlZWRhYTg2YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2ZhYTllNDEwLTNlNTgtNDJiYy1hMTdjLTg4Y2FkOGQ5OTA0MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzMwMTkxOWVjLTViNWEtNDJhNy05MDgxLTZjM2VlYTVhY2Y2MSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyMWQxNjE5LWQ2MDAtNGFmZS1iMWViLTVjOWYzNzVjNjE5MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzdhMjhkNDVlLTdjMWYtNGMyYS1iMDVjLTcyNmUwZmFmYmFjMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2IxZGE0YTllLTdhNjAtNDAwOS1iMjdkLTYwMzFmMmNkNWRmZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxOTBkMzA2LTFjZWQtNGY5MC05NDBjLWE1ZTRkMjVjMWNmYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE3ODZkZjVmLWVjMWEtNGRjOS1hN2IwLTE2OGMwYTI1NzdlZiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg3MjhkYjNiLTc1ZWEtNGFmNC1hNjgzLTRkOGRlMzU2NjY0NiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk5MTEzMzk2LTIxZWMtNGYwYi05OWY4LWE0MmUwNThkNjQzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZjZTA1YWEzLWM4NTEtNDQyNC1hNjFjLTJkYjU5ZDgzNGFjNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZiYjc4NjA1LThkYmUtNDg1NS05ZjY4LThlYTg0MGFlOGRiOCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZhNDdmNWNiLTEwMmUtNDkxMy1iYjAxLTc1OTk0ODI0ZWYzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2JjZWVkMTZjLWIzYWUtNGJjMC1iMmE3LTYwN2FiYjNjZGMzYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2E0MWI0NTJiLTBjZWUtNDI2OC05MmFmLTY3ZWNmMDQ5ZTZlMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFiNDViM2IxLWI2YTMtNDhjOC04NzFjLWM1NDQ5YmMzODhjNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM5MjVmMzdjLTJlYzEtNDdjYy1iMTUyLWIwZDFjYzI5ZjUzNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM0YjFjMjkyLWU1ZmQtNDUyZi05NDFhLTRhZGNiMzdhZWE2OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE5NTI3ODA0LWY3YzUtNDQ4Ni1hNjQwLTlmYTMxMGMyNTg2ZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkZDk5MGExLWNiOTUtNGE0ZS05ZTJlLTkzYzg2NWQ5MWI3MiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2Y4NmNiYWQ3LWEwMWItNGJlOS1hOTU0LWFlMGUyNjBmYTA1OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzMTJiNTE2LTE0YzQtNGMyNy1hM2IwLTkyMzQ3MmY0ZGEyZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2RjMTE0OTFjLTk0MWYtNDYwYi1hYzkyLWYwNGRjZjExMzhjMyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MxMDdkYTk1LWFlZGYtNDk5MS1iNTVmLTdjMDc4YTllNTU4MSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxOTBkMzA2LTFjZWQtNGY5MC05NDBjLWE1ZTRkMjVjMWNmYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZhNDdmNWNiLTEwMmUtNDkxMy1iYjAxLTc1OTk0ODI0ZWYzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2IxZGE0YTllLTdhNjAtNDAwOS1iMjdkLTYwMzFmMmNkNWRmZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzE5NTI3ODA0LWY3YzUtNDQ4Ni1hNjQwLTlmYTMxMGMyNTg2ZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg3MjhkYjNiLTc1ZWEtNGFmNC1hNjgzLTRkOGRlMzU2NjY0NiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2FiMmNlNmY1LTFmODgtNDQ4OC1hMzFiLTFmNmQyZDgxODg3MCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAwN2ZhMDliLTZjYzAtNDEwYi1iMzk1LTE0NzBjYWI1YWI1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MyYTJhMGFkLTQ0N2UtNDg2NS1hZWQxLWMyZWNjNGY3ODQ4OSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2ZiNjY3ZGZiLTYzNzAtNDExOC1hYzE3LTU0YTgzMzFkNmE4YSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzdhMjhkNDVlLTdjMWYtNGMyYS1iMDVjLTcyNmUwZmFmYmFjMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAzZjg4ZGQyLTlkNjMtNGM2NS1hMDJmLWU3MGNjODkwNzE5NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ4ODhjYjE2LWE1Y2QtNDFhZS1iZWNhLTA5ZmU0N2IxZDBlNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg5YWE5MGVjLWE2NTYtNDQ3NS1hZTVkLTIwMWJiN2VhMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I0NWNmYTMzLWQ5NzgtNGI4Zi05MDM5LWYwYzE5ZjFhMzMwNiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzYxYTRiNzk2LTkwYzQtNDg1Mi1hNDFiLTU3ZDI1NzkyZDU5YyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzM5MjVmMzdjLTJlYzEtNDdjYy1iMTUyLWIwZDFjYzI5ZjUzNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzZjZTA1YWEzLWM4NTEtNDQyNC1hNjFjLTJkYjU5ZDgzNGFjNyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFiNDViM2IxLWI2YTMtNDhjOC04NzFjLWM1NDQ5YmMzODhjNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0YTAwYWUxLTAyMWQtNDRkZS05ZWFlLTNhMzA1ZWI3ZWEyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzFkNjU5M2YzLTgwNDQtNDMzMC1hM2RlLTA2NWY1MDMxOTFhMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzc0MzA3ZGI4LTcwNjYtNGNlYS1iZmIxLTY1ZGUxYjNiNjgyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0YTAwYWUxLTAyMWQtNDRkZS05ZWFlLTNhMzA1ZWI3ZWEyYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
       ],
       "bookingLink": "https://amadeus.booking.holibob.tech/product/9fa4d7e6-e733-42c7-ac14-4dd35f6a3648",
       "minimumDuration": "8 hours"
@@ -651,22 +784,22 @@
         "currencyCode": "EUR"
       },
       "pictures": [
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2YyZjk3YmU2LWFmYmMtNDQwMi1iNDU5LTE0NWVmM2E3NmZhOSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ2YjNjZmQ4LTIxNzYtNDA5Yy05NTZlLTI3NDgzMmE1ZjZjYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyOTliNTY1LWRmNTQtNGY2ZS1hZWZkLTFkOWNmZmQ4YTUwZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzExMjEyNmY5LTMzYWUtNGMyMS04MDMwLWZkZmEyYzU2MmIzYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2Y3N2Y2YTk0LTA3ZWUtNGFmNi05OGVlLThmZjVhM2NhOTEyYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg1YjVkNDY1LTllMjAtNGQ3Ny1iODE4LTBhOGM1ODdjYmIzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzU1ZjFkNDFhLTNhNGYtNGQwNC04YjM3LTU4MzFiYTlhNGJmZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2VmZGUyYmE1LTc1MDUtNDQ4MS1hOTFhLTk2MWI3ZTkxYTNkNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkYjNhYTdhLTE4MTUtNGVlNy1hNDNmLTAwM2YyYzVjZmIwMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2UxMmZlNGQ4LTE3OTgtNDA0NC1hNDZlLTViYzM4YzM3OGQ0NCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxYThlZjhjLTdkMjEtNDZmYy1iYWE1LTE1NjVkYTQ3OTdkYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJlZmI5YmUxLTgzMzItNDJiNS1iNDNhLThlNzlkMWJkZDgzOCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzVjOGE4YWUzLTlmNzgtNGEzNC04NzUxLTA0MGZiNGM1Y2NjNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2Y3N2Y2YTk0LTA3ZWUtNGFmNi05OGVlLThmZjVhM2NhOTEyYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2YyZjk3YmU2LWFmYmMtNDQwMi1iNDU5LTE0NWVmM2E3NmZhOSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2MxZTM1NjA0LWVmNGYtNDQ3ZS05OTdmLWY5NTliOTc0ZDY2YiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg1YjVkNDY1LTllMjAtNGQ3Ny1iODE4LTBhOGM1ODdjYmIzMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2UxMmZlNGQ4LTE3OTgtNDA0NC1hNDZlLTViYzM4YzM3OGQ0NCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzExMjEyNmY5LTMzYWUtNGMyMS04MDMwLWZkZmEyYzU2MmIzYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2VmZGUyYmE1LTc1MDUtNDQ4MS1hOTFhLTk2MWI3ZTkxYTNkNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzBhMDBmYTkyLTI1OTYtNDEwMi05MjI0LThmZDFkYzFmZDE1NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzVjOGE4YWUzLTlmNzgtNGEzNC04NzUxLTA0MGZiNGM1Y2NjNCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzcxYThlZjhjLTdkMjEtNDZmYy1iYWE1LTE1NjVkYTQ3OTdkYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJkYjNhYTdhLTE4MTUtNGVlNy1hNDNmLTAwM2YyYzVjZmIwMSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2UxOTA0MDE0LTg0ZDQtNDQwNi1iYTI4LTVmZjgxNGI5YjVkYyIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzBhMDBmYTkyLTI1OTYtNDEwMi05MjI0LThmZDFkYzFmZDE1NSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzQ2YjNjZmQ4LTIxNzYtNDA5Yy05NTZlLTI3NDgzMmE1ZjZjYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzAyOTliNTY1LWRmNTQtNGY2ZS1hZWZkLTFkOWNmZmQ4YTUwZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
       ],
       "bookingLink": "https://amadeus.booking.holibob.tech/product/14572372-49f8-481a-b618-73706f57f0e8",
       "minimumDuration": "9 hours"
@@ -691,21 +824,21 @@
         "currencyCode": "EUR"
       },
       "pictures": [
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I3NGU0OTJkLWMwMjctNDM3YS1hZjI2LWM5M2EwZDk3ZGVhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzg2YWNjOWRiLWFmZWEtNGMwZC04NGU5LTA4NWYxYmY0YmY2ZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0ODY0OWE4LWIzZmMtNDRkMS04N2Y2LTRjYWViMGMyOGJjZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzgwNTM1NDU4LTg4MzMtNDBmNC04NzZiLWQ3YTg3YTRlMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U4ZWI5ZGNmLTJmOWMtNGVlMC05MjRlLTBlYzY0ZjRlODkzMiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M3OTZmZWFiLWVjY2EtNGZkZS1hMWViLTYzMDBjOWMwMmRhNSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M5MDI0NDhhLTFjYTEtNDI2Yy04ZmIzLTkxODEzNTBhOWZhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2I3NGU0OTJkLWMwMjctNDM3YS1hZjI2LWM5M2EwZDk3ZGVhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJhMzZlZGM4LTM3NWQtNDU1Mi05N2IyLWZiZDE2OTE5YjkwYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzgzNjIwNjhkLTc5NDQtNDRmNS1hNWRiLWEwZTFjZjdlZjQzYiIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U5MzU2ZDQ1LWNkYzgtNDQzNC1hMDlmLWNjMDNmZjkzZjQ1OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzJhMzZlZGM4LTM3NWQtNDU1Mi05N2IyLWZiZDE2OTE5YjkwYSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2M5MDI0NDhhLTFjYTEtNDI2Yy04ZmIzLTkxODEzNTBhOWZhMCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzk0ODY0OWE4LWIzZmMtNDRkMS04N2Y2LTRjYWViMGMyOGJjZCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
         "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2RiNzgxNGVmLTJkOTMtNDA0ZS04MGVhLWNjZGZhMDJmOWZhOSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0=",
-        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzLzgwNTM1NDU4LTg4MzMtNDBmNC04NzZiLWQ3YTg3YTRlMDg1ZSIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
+        "https://images.holibob.tech/eyJrZXkiOiJwcm9kdWN0SW1hZ2VzL2U5MzU2ZDQ1LWNkYzgtNDQzNC1hMDlmLWNjMDNmZjkzZjQ1OCIsImVkaXRzIjp7InJlc2l6ZSI6eyJmaXQiOiJjb3ZlciIsIndpZHRoIjoxOTIwLCJoZWlnaHQiOjEwODB9fX0="
       ],
       "bookingLink": "https://amadeus.booking.holibob.tech/product/4391d97c-e8ea-11e9-b729-06829e32ec62",
       "minimumDuration": "12 hours"
     }
   ],
-  "timestamp": "2026-03-05T18:29:21.796734"
+  "timestamp": "2026-03-05T18:59:37.062406"
 }
