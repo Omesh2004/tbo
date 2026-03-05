@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     personalization_agent_url: str = "http://localhost:8001"
     hotel_search_agent_url: str = "http://localhost:8002"
     amadeus_agent_url: str = "http://localhost:8003"
+    transport_search_url: str = "http://localhost:8001"  # transport-search-api
 
     # Integration Endpoints
     hotel_search_url: str = "http://localhost:5000"

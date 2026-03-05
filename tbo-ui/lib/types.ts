@@ -105,3 +105,19 @@ export interface RecommendedHotel {
   price: number;
   image?: string;
 }
+
+export interface FlightOption {
+  id: string;
+  airline: string;
+  airlineCode?: string;
+  flightNumber?: string;
+  origin: string;
+  destination: string;
+  departureTime?: string;
+  arrivalTime?: string;
+  duration: string;
+  stops: number;
+  price: number;
+  currency?: string;
+  cabinClass?: string;
+}

@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
+import httpx
 from app.config import settings
 from app.logger import logger
 from app.ml.complexity_detector import ComplexityDetector
@@ -215,41 +216,69 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
             print(f"  ✗ Hotel search error: {str(e)}")
         
         # ===== STEP 2: SEARCH TRAVEL ROUTES & PACKAGES =====
-        print("\n[STEP 2] ✈️ Searching Travel Routes & Packages...")
+        print("\n[STEP 2] ✈️ Searching Travel Routes & Packages (Amadeus)...")
         flight_options = []
         travel_packages = []
         try:
-            # Search for travel packages from vector DB
-            travel_data = await rag_engine.search_travel_data(
-                query=f"flights from {request.origin} to {request.destination} {request.check_in}",
-                collection="travel_data",
-                limit=5
-            )
-            
-            if travel_data:
-                travel_packages = travel_data
-                print(f"  ✓ Found {len(travel_packages)} travel packages from vector DB")
-            else:
-                print(f"  ⚠ No travel packages found in vector DB")
-                # Create synthetic flight options if no packages found
-                flight_options = [
-                    {
-                        "id": f"flight_direct_{i}",
+            # First try real Amadeus data via transport-search-api
+            transport_search_url = settings.transport_search_url
+            async with httpx.AsyncClient(timeout=30) as _tc:
+                _resp = await _tc.post(
+                    f"{transport_search_url}/api/search-transport",
+                    json={
                         "origin": request.origin,
                         "destination": request.destination,
+                        "date": request.check_in,
+                        "adults": request.passengers,
+                        "sort_by": "price",
+                    },
+                )
+            if _resp.status_code == 200:
+                _data = _resp.json()
+                _opts = _data.get("transport_options", [])
+                # Keep only flight-type results and map to orchestrator's internal format
+                flight_options = [
+                    {
+                        "id": o.get("flight_number") or f"flight_{idx}",
+                        "airline": o.get("provider", "Unknown"),
+                        "airline_code": o.get("airline_code"),
+                        "flight_number": o.get("flight_number"),
+                        "origin": o.get("origin", request.origin),
+                        "destination": o.get("destination", request.destination),
+                        "departure_time": o.get("departure_time"),
+                        "arrival_time": o.get("arrival_time"),
                         "departure": request.check_in,
-                        "return": request.check_out,
-                        "airline": airline,
-                        "price": 150 + (i * 50),
-                        "duration": f"{4 + i} hours",
-                        "stops": i
+                        "duration": o.get("duration", "N/A"),
+                        "price": float(o.get("price", 0)),
+                        "currency": o.get("currency", "INR"),
+                        "stops": int(o.get("stops", 0)),
+                        "cabin_class": o.get("cabin_class", "Economy"),
                     }
-                    for i, airline in enumerate(["Air France", "Lufthansa", "British Airways"])
+                    for idx, o in enumerate(_opts)
+                    if o.get("type") == "flight"
                 ]
-                print(f"  ✓ Generated {len(flight_options)} flight options")
+                print(f"  ✓ Amadeus returned {len(flight_options)} flight(s) for {request.origin} → {request.destination}")
+            else:
+                print(f"  ⚠ transport-search-api returned {_resp.status_code}, will use vector DB fallback")
+
+            # Also try vector DB for travel packages (non-blocking if empty)
+            if not flight_options:
+                travel_data = await rag_engine.search_travel_data(
+                    query=f"flights from {request.origin} to {request.destination} {request.check_in}",
+                    collection="travel_data",
+                    limit=5,
+                )
+                if travel_data:
+                    travel_packages = travel_data
+                    print(f"  ✓ Found {len(travel_packages)} travel packages from vector DB")
+                else:
+                    print(f"  ⚠ No travel data in vector DB either — flight section will be empty")
+
         except Exception as e:
             logger.error(f"Travel search failed: {str(e)}")
             print(f"  ✗ Travel search error: {str(e)}")
+            # Last-resort: empty list rather than wrong European airlines
+            flight_options = []
         
         # ===== STEP 3: PREPARE BUSINESS RULES & CONSTRAINTS =====
         print("\n[STEP 3] 💼 Analyzing Business Rules & Constraints...")

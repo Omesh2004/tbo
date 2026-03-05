@@ -15,13 +15,14 @@ import {
   mockAgent,
   mockHotels,
   mockTransport,
+  mockFlights,
   mockQuote,
   mockHistory,
   mockSavedPlans,
   mockReports,
   mockRecommendedHotels,
 } from '@/lib/mockData';
-import { ChatMessage, HotelOption, QuoteSummary, TransportOption } from '@/lib/types';
+import { ChatMessage, HotelOption, QuoteSummary, TransportOption, FlightOption } from '@/lib/types';
 import type { TravelPlanDetails } from '@/components/TravelPlanForm';
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [selectedHotel, setSelectedHotel] = useState<string | undefined>();
   const [selectedTransport, setSelectedTransport] = useState<string | undefined>();
+  const [selectedFlight, setSelectedFlight] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [travelPlanResponseMessageId, setTravelPlanResponseMessageId] = useState<string | null>(null);
@@ -40,6 +42,7 @@ export default function Home() {
   const [travelPlanFormDestination, setTravelPlanFormDestination] = useState('');
   const [dynamicHotels, setDynamicHotels] = useState<HotelOption[]>(mockHotels);
   const [dynamicTransport, setDynamicTransport] = useState<TransportOption[]>(mockTransport);
+  const [dynamicFlights, setDynamicFlights] = useState<FlightOption[]>(mockFlights);
   const [travelPlanDetails, setTravelPlanDetails] = useState<TravelPlanDetails | null>(null);
 
   const displayQuote = useMemo((): QuoteSummary => {
@@ -50,20 +53,22 @@ export default function Home() {
       ? `${new Date(details.startDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} (+${nights} days)`
       : mockQuote.date;
     const hotel = selectedHotel ? dynamicHotels.find((h) => h.id === selectedHotel) : undefined;
+    const flight = selectedFlight ? dynamicFlights.find((f) => f.id === selectedFlight) : undefined;
     const transport = selectedTransport ? dynamicTransport.find((t) => t.id === selectedTransport) : undefined;
-    const total = (hotel ? hotel.price * nights : 0) + (transport ? transport.price : 0) || mockQuote.minPrice;
+    const flightCost = flight?.price ?? transport?.price ?? mockQuote.transportCost;
+    const total = (hotel ? hotel.price * nights : 0) + flightCost || mockQuote.minPrice;
     return {
       destination: dest,
       date: dateStr,
       hotelCost: hotel?.price ?? mockQuote.hotelCost,
       hotelCostUnit: hotel ? '/night' : mockQuote.hotelCostUnit,
-      transportCost: transport?.price ?? mockQuote.transportCost,
-      transportCostUnit: transport?.priceUnit ?? mockQuote.transportCostUnit,
+      transportCost: flightCost,
+      transportCostUnit: flight ? 'per person' : (transport?.priceUnit ?? mockQuote.transportCostUnit),
       minPrice: total || mockQuote.minPrice,
       maxPrice: total || mockQuote.maxPrice,
       currency: mockQuote.currency,
     };
-  }, [travelPlanDetails, selectedHotel, selectedTransport]);
+  }, [travelPlanDetails, selectedHotel, selectedTransport, selectedFlight, dynamicFlights]);
 
   const extractDestination = (text: string): string => {
     const lower = text.toLowerCase();
@@ -229,17 +234,23 @@ export default function Home() {
         }
 
         if (data.flight_options && Array.isArray(data.flight_options)) {
-          const freshTransport = data.flight_options.map((f: any, idx: number) => ({
+          const freshFlights: FlightOption[] = data.flight_options.map((f: any, idx: number) => ({
             id: f.id || `flight_${idx}`,
-            name: f.airline || "Flight",
-            icon: '✈️',
-            duration: f.duration || "Direct",
-            price: f.price,
-            priceUnit: 'per person',
-            type: 'shuttle'
+            airline: f.airline || f.provider || 'Flight',
+            airlineCode: f.airline_code || f.airlineCode,
+            flightNumber: f.flight_number || f.flightNumber,
+            origin: f.origin || planDetails?.fromCity || '',
+            destination: f.destination || planDetails?.destination || '',
+            departureTime: f.departure_time || (f.departure ? `${f.departure}T00:00` : undefined),
+            arrivalTime: f.arrival_time || f.arrival,
+            duration: f.duration || 'Direct',
+            stops: typeof f.stops === 'number' ? f.stops : 0,
+            price: f.price || 0,
+            currency: f.currency || 'USD',
+            cabinClass: f.cabin_class || f.cabinClass || 'Economy',
           }));
-          setDynamicTransport(freshTransport);
-          if (freshTransport.length > 0) setSelectedTransport(freshTransport[0].id);
+          setDynamicFlights(freshFlights);
+          if (freshFlights.length > 0) setSelectedFlight(freshFlights[0].id);
         }
       } else {
         // 1. Send text to Gemini API (or your AI endpoint)
@@ -372,12 +383,13 @@ export default function Home() {
 
   const handleGeneratePDF = () => {
     const hotel = selectedHotel ? dynamicHotels.find((h) => h.id === selectedHotel) ?? null : null;
+    const flight = selectedFlight ? dynamicFlights.find((f) => f.id === selectedFlight) ?? null : null;
     const transport = selectedTransport ? dynamicTransport.find((t) => t.id === selectedTransport) ?? null : null;
     const nights = travelPlanDetails?.numberOfDays ?? 4;
     const hotelCost = hotel ? hotel.price * nights : 0;
-    const transportCost = transport ? transport.price : 0;
-    const total = hotelCost + transportCost;
-    const currency = '$';
+    const flightCost = flight?.price ?? transport?.price ?? 0;
+    const total = hotelCost + flightCost;
+    const currency = flight?.currency === 'INR' ? '₹' : '$';
     setVoucherQuote({
       destination: travelPlanDetails?.destination ?? mockQuote.destination,
       date: travelPlanDetails?.startDate
@@ -385,8 +397,8 @@ export default function Home() {
         : mockQuote.date,
       hotelCost: hotel?.price ?? mockQuote.hotelCost,
       hotelCostUnit: hotel ? `/night (${nights} nights)` : mockQuote.hotelCostUnit,
-      transportCost: transport?.price ?? mockQuote.transportCost,
-      transportCostUnit: transport?.priceUnit ?? mockQuote.transportCostUnit,
+      transportCost: flightCost || mockQuote.transportCost,
+      transportCostUnit: flight ? 'per person' : (transport?.priceUnit ?? mockQuote.transportCostUnit),
       minPrice: total || mockQuote.minPrice,
       maxPrice: total || mockQuote.maxPrice,
       currency,
@@ -439,6 +451,9 @@ export default function Home() {
               transportOptions={dynamicTransport}
               selectedTransportId={selectedTransport}
               onSelectTransport={setSelectedTransport}
+              flightOptions={dynamicFlights}
+              selectedFlightId={selectedFlight}
+              onSelectFlight={setSelectedFlight}
               isLoading={isLoading}
               isRecording={isRecording}
               travelPlanResponseMessageId={travelPlanResponseMessageId}

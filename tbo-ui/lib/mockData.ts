@@ -8,6 +8,7 @@ import {
   Report,
   RecommendedHotel,
   Agent,
+  FlightOption,
 } from './types';
 
 export const mockAgent: Agent = {
@@ -127,6 +128,54 @@ export const mockSavedPlans: SavedPlan[] = [
 export const mockReports: Report[] = [
   { id: '1', title: 'Travel Summary 2024', date: 'Jan 2024', icon: '📊', description: 'Annual travel report and spending analysis' },
   { id: '2', title: 'Best Deals Found', date: 'This Month', icon: '💰', description: 'Top 10 flight deals and hotel offers' },
+];
+
+export const mockFlights: FlightOption[] = [
+  {
+    id: 'mf1',
+    airline: 'Singapore Airlines',
+    airlineCode: 'SQ',
+    flightNumber: 'SQ-401',
+    origin: 'Mumbai',
+    destination: 'Singapore',
+    departureTime: '2024-12-05T22:05',
+    arrivalTime: '2024-12-06T07:50',
+    duration: '5h 45m',
+    stops: 0,
+    price: 450,
+    currency: 'USD',
+    cabinClass: 'Economy',
+  },
+  {
+    id: 'mf2',
+    airline: 'Air India',
+    airlineCode: 'AI',
+    flightNumber: 'AI-342',
+    origin: 'Mumbai',
+    destination: 'Singapore',
+    departureTime: '2024-12-06T07:30',
+    arrivalTime: '2024-12-06T17:00',
+    duration: '6h 30m',
+    stops: 0,
+    price: 380,
+    currency: 'USD',
+    cabinClass: 'Economy',
+  },
+  {
+    id: 'mf3',
+    airline: 'IndiGo',
+    airlineCode: '6E',
+    flightNumber: '6E-1078',
+    origin: 'Mumbai',
+    destination: 'Singapore',
+    departureTime: '2024-12-06T14:15',
+    arrivalTime: '2024-12-07T00:55',
+    duration: '8h 40m',
+    stops: 1,
+    price: 290,
+    currency: 'USD',
+    cabinClass: 'Economy',
+  },
 ];
 
 export const mockRecommendedHotels: RecommendedHotel[] = [

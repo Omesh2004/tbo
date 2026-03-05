@@ -3,9 +3,10 @@
 import React from 'react';
 import { Send, Paperclip, Mic, Square, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ChatMessage, HotelOption, TransportOption, QuoteSummary, RecommendedHotel } from '@/lib/types';
+import { ChatMessage, HotelOption, TransportOption, QuoteSummary, RecommendedHotel, FlightOption } from '@/lib/types';
 import HotelOptions from './HotelOptions';
 import TransportOptions from './TransportOptions';
+import FlightOptions from './FlightOptions';
 import TravelPlanForm, { TravelPlanDetails } from './TravelPlanForm';
 import FormattedMessage from './FormattedMessage';
 
@@ -20,6 +21,9 @@ interface ChatAreaProps {
   transportOptions?: TransportOption[];
   selectedTransportId?: string;
   onSelectTransport?: (transportId: string) => void;
+  flightOptions?: FlightOption[];
+  selectedFlightId?: string;
+  onSelectFlight?: (flightId: string) => void;
   isLoading?: boolean;
   isRecording?: boolean;
   travelPlanResponseMessageId?: string | null;
@@ -43,6 +47,9 @@ export default function ChatArea({
   transportOptions,
   selectedTransportId,
   onSelectTransport,
+  flightOptions,
+  selectedFlightId,
+  onSelectFlight,
   isLoading = false,
   isRecording = false,
   travelPlanResponseMessageId = null,
@@ -230,7 +237,20 @@ export default function ChatArea({
                   </div>
                 )}
 
-                {/* 2. Best Transport Options - choose second */}
+                {/* 2. Flight Options */}
+                {flightOptions && flightOptions.length > 0 && (
+                  <div className="bg-white rounded-xl p-4 lg:p-5 border border-gray-200 shadow-sm">
+                    <FlightOptions
+                      title="Available Flights"
+                      flights={flightOptions}
+                      selectedFlightId={selectedFlightId}
+                      onSelectFlight={onSelectFlight}
+                      compact
+                    />
+                  </div>
+                )}
+
+                {/* 3. Best Transport Options (ground) */}
                 {transportOptions && transportOptions.length > 0 && (
                   <div className="bg-white rounded-xl p-4 lg:p-5 border border-gray-200 shadow-sm">
                     <TransportOptions
@@ -262,7 +282,7 @@ export default function ChatArea({
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Transport Cost</span>
+                        <span className="text-gray-600">Flight Cost</span>
                         <span className="font-semibold text-gray-900">
                           {quote.currency}{quote.transportCost}{quote.transportCostUnit}
                         </span>
@@ -272,11 +292,11 @@ export default function ChatArea({
                       <p className="text-lg font-bold text-gray-900">
                         {quote.currency}{quote.minPrice.toLocaleString()} – {quote.currency}{quote.maxPrice.toLocaleString()}
                       </p>
-                      <p className="text-xs text-gray-600 mt-1">Final price depends on hotel and transport selected</p>
+                      <p className="text-xs text-gray-600 mt-1">Final price depends on hotel and flight selected</p>
                     </div>
                     {onGeneratePDF && (
                       <>
-                        {selectedHotelId && selectedTransportId ? (
+                        {selectedHotelId && (selectedFlightId || selectedTransportId) ? (
                           <Button
                             onClick={onGeneratePDF}
                             className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg flex items-center justify-center gap-2 text-sm"
@@ -286,7 +306,7 @@ export default function ChatArea({
                           </Button>
                         ) : (
                           <p className="text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
-                            Select a hotel and a transport option above to generate your voucher PDF.
+                            Select a hotel and a flight above to generate your voucher PDF.
                           </p>
                         )}
                       </>
