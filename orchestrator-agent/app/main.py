@@ -352,97 +352,57 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
         # ===== STEP 6: LLM ANALYSIS & RECOMMENDATION =====
         print("\n[STEP 6] 🤖 LLM Analysis of All Options...")
         
-        # Build comprehensive prompt for LLM comparing all options
-        llm_context = f"""
-        INTELLIGENT TRAVEL RECOMMENDATION - MULTI-OPTION ANALYSIS
-        
-        ==============================================
-        USER REQUEST & PREFERENCES:
-        ==============================================
-        Origin: {request.origin}
-        Destination: {request.destination}
-        Travel Dates: {request.check_in} to {request.check_out} ({nights} nights)
-        Passengers: {request.passengers}
-        Travel Style: {request.travel_style or 'flexible'}
-        Budget: ${request.budget or 'unlimited'}
-        Special Requirements: {request.special_requirements or 'None'}
-        Customer Preferences: {request.user_preferences or 'Standard'}
-        
-        ==============================================
-        TOP 5 RECOMMENDED PACKAGES (for your consideration):
-        ==============================================
-        """
-        
+        # Build prompt asking for a detailed travel itinerary
+        best_pkg = top_recommendations[0]
+        best_hotel = best_pkg["hotel"]
+        best_flight = best_pkg["flight"]
+
+        hotel_options_text = ""
         for idx, pkg in enumerate(top_recommendations, 1):
-            hotel = pkg["hotel"]
-            flight = pkg["flight"]
-            profit = pkg["profit_metrics"]
-            llm_context += f"""
-        
-        OPTION {idx}:
-        ═════════════════════════════════════════
-        Hotel: {hotel.get('name')} ({hotel.get('rating')}/5)
-        Location: {hotel.get('location')}
-        Price: ${hotel.get('price_per_night')}/night × {nights} nights = ${pkg['total_hotel_cost']:.2f}
-        
-        Flight: {flight.get('airline')} - ${flight.get('price')} ({flight.get('duration')}, {flight.get('stops')} stops)
-        
-        PACKAGE TOTAL: ${pkg['total_cost']:.2f}
-        Platform Profit: ${profit['total_profit']:.2f} (Margin: {profit['margin']:.1f}%)
-        Breakdown: Commission ${profit['commission']:.2f} + Bundle Bonus ${profit['bundle_bonus']:.2f}
-        
-        Customer Fit: {"⭐" * int(hotel.get('rating', 3))} Rating | {flight.get('stops')} Stops Flight
-        """
-        
-        llm_context += f"""
-        
-        ==============================================
-        PLATFORM PROFIT RULES:
-        ==============================================
-        • Base Commission: 15% on all bookings
-        • Bundle Bonus: 5% additional when hotel + flight combined
-        • Minimum Commission: $25 per booking
-        • Target: Maximize profit while ensuring customer satisfaction
-        
-        ==============================================
-        YOUR ANALYSIS TASK:
-        ==============================================
-        1. Analyze each of the 5 options above
-        2. Consider which best balances:
-           - Customer satisfaction (ratings, amenities)
-           - Platform profitability
-           - User preferences ({request.travel_style or 'any'} style)
-           - Budget alignment (${request.budget or 'unlimited'})
-        3. SELECT the #1 BEST option
-        4. Explain why it's better than others
-        5. Suggest 1-2 upsell opportunities for extra revenue
-        
-        IMPORTANT: You MUST rank these 5 options and select #1 based on:
-        1. Which maximizes platform profit (commission + bundle)
-        2. Which matches user preferences best
-        3. Which provides best customer satisfaction (ratings)
-        
-        Provide your response EXACTLY in this format:
-        
-        RECOMMENDATIONS ANALYSIS:
-        [Brief analysis of all 5 options]
-        
-        BEST CHOICE:
-        Option [X]: [Hotel Name] + [Airline]
-        
-        REASON #1: [First advantage]
-        REASON #2: [Second advantage]
-        REASON #3: [Third advantage]
-        
-        PLATFORM PROFIT:
-        Total Cost to Customer: $[X]
-        Our Profit: $[X]
-        Profit Margin: [X]%
-        
-        UPSELL OPPORTUNITIES:
-        1. [Suggestion 1] - Additional $[X] profit
-        2. [Suggestion 2] - Additional $[X] profit
-        """
+            h = pkg["hotel"]
+            hotel_options_text += f"\n  Option {idx}: {h.get('name')} ({h.get('rating')}/5 stars) — ${h.get('price_per_night')}/night — {h.get('location')}\n"
+            amenities = h.get('amenities', [])
+            if amenities:
+                hotel_options_text += f"    Amenities: {', '.join(amenities[:5])}\n"
+
+        llm_context = f"""You are a professional travel planner. Create a detailed, practical travel plan for the trip below.
+
+TRIP DETAILS:
+- From: {request.origin}
+- To: {request.destination}
+- Dates: {request.check_in} to {request.check_out} ({nights} nights)
+- Passengers: {request.passengers}
+- Travel Style: {request.travel_style or 'flexible'}
+- Budget: ${request.budget or 'flexible'}
+- Special Requirements: {request.special_requirements or 'None'}
+
+FLIGHT OPTIONS:
+  Primary: {best_flight.get('airline')} — ${best_flight.get('price')} — {best_flight.get('duration')} — {best_flight.get('stops')} stop(s)
+
+HOTEL OPTIONS:
+{hotel_options_text}
+Write ONLY a detailed travel plan in the following structure. Do NOT include any platform profit analysis, commission figures, upsell suggestions, or recommendation scoring.
+
+STRUCTURE YOUR RESPONSE EXACTLY AS:
+
+FLIGHT & TRANSPORT:
+[Describe the recommended flight, journey duration, any connections, and local transport at destination such as metro, taxi, rental car]
+
+HOTEL OPTIONS:
+[List each hotel option with its highlights, star rating, location advantages, and key amenities. Help the traveller understand the difference between the options.]
+
+DAY-BY-DAY ITINERARY:
+Day 1 — [Date: {request.check_in}]: [Activities, arrival plan, check-in, evening suggestion]
+Day 2: [Specific attractions, landmarks, or experiences to visit]
+... (continue for all {nights} nights)
+Day {nights} — [Date: {request.check_out}]: [Final day activities, check-out, departure]
+
+MUST-VISIT PLACES:
+[List the top attractions, landmarks, and experiences at {request.destination} with a brief description of each]
+
+LOCAL TIPS:
+[Practical tips: local transport, best food spots, cultural notes, weather, packing suggestions]
+"""
         
         # Send to LLM for intelligent analysis
         print("\n[STEP 7] 🤖 Sending analysis to LLM (Llama2)...")
@@ -507,19 +467,27 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
             "platform_profit": best_package["profit_metrics"]["total_profit"]
         }
         
-        # Generate comparison summary
-        comparison_summary = "COMPARISON OF TOP 5 OPTIONS:\n"
+        # Generate hotel options summary for the traveller
+        comparison_summary = f"HOTEL OPTIONS FOR {request.destination.upper()}:\n"
         comparison_summary += "=" * 80 + "\n"
-        comparison_summary += f"{'Rank':<5} {'Hotel':<25} {'Flight':<15} {'Cost':<12} {'Profit':<12}\n"
+        comparison_summary += f"{'#':<4} {'Hotel':<30} {'Stars':<8} {'Price/Night':<14} {'Location':<20}\n"
         comparison_summary += "-" * 80 + "\n"
         
         for rec in all_recommendations_list:
-            hotel_name = rec["hotel"]["name"][:24]
-            airline = rec["flight"]["airline"][:14]
-            cost = f"${rec['total_cost']:.0f}"
-            profit = f"${rec['profit_metrics']['total_profit']:.0f}"
-            comparison_summary += f"{rec['rank']:<5} {hotel_name:<25} {airline:<15} {cost:<12} {profit:<12}\n"
+            hotel_name = rec["hotel"]["name"][:29]
+            rating = f"{rec['hotel']['rating']}/5"
+            price = f"${rec['hotel']['price_per_night']}/night"
+            location = str(rec["hotel"].get("location", ""))[:19]
+            comparison_summary += f"{rec['rank']:<4} {hotel_name:<30} {rating:<8} {price:<14} {location:<20}\n"
         
+        comparison_summary += "=" * 80 + "\n"
+        comparison_summary += f"\nFLIGHT OPTIONS:\n"
+        comparison_summary += "-" * 80 + "\n"
+        if flight_options:
+            for f in flight_options:
+                comparison_summary += f"  {f.get('airline','N/A'):<20} ${f.get('price',0):<10} {f.get('duration','N/A'):<12} {f.get('stops',0)} stop(s)\n"
+        else:
+            comparison_summary += f"  Flights from {request.origin} to {request.destination} — check airline websites for live prices\n"
         comparison_summary += "=" * 80
         
         # ROI Analysis for best option
@@ -552,7 +520,7 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
             all_recommendations=all_recommendations_list,
             analysis=llm_response.get("response", "LLM analysis completed"),
             recommendation=best_recommendation,
-            reasoning=f"After analyzing {len(top_recommendations)} different package combinations, the LLM selected this option because it optimally balances customer satisfaction (hotel rating {best_recommendation['hotel']['rating']}/5) with platform profit (${best_recommendation['platform_profit']:.2f}, {roi_analysis['profit_margin']:.1f}% margin).",
+            reasoning=f"Recommended hotel: {best_recommendation['hotel']['name']} ({best_recommendation['hotel']['rating']}/5 stars) at {best_recommendation['hotel']['location']}. Flight via {best_recommendation['flight']['airline']} — {best_recommendation['flight'].get('duration', 'N/A')} travel time with {best_recommendation['flight'].get('stops', 0)} stop(s). Total trip cost: ${best_recommendation['total_user_cost']:.2f} for {nights} nights.",
             comparison_summary=comparison_summary,
             profit_metrics={
                 "total_revenue": best_revenue,
@@ -563,19 +531,45 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
             roi_analysis=roi_analysis,
             complete_journey={
                 "destination": request.destination,
-                "duration_days": nights,
-                "hotel": best_recommendation["hotel"]["name"],
-                "flight": best_recommendation["flight"]["airline"],
+                "origin": request.origin,
+                "duration_nights": nights,
+                "check_in": request.check_in,
+                "check_out": request.check_out,
+                "passengers": request.passengers,
+                "recommended_hotel": {
+                    "name": best_recommendation["hotel"]["name"],
+                    "rating": best_recommendation["hotel"]["rating"],
+                    "location": best_recommendation["hotel"]["location"],
+                    "price_per_night": best_recommendation["hotel"]["price_per_night"],
+                    "amenities": best_recommendation["hotel"].get("amenities", [])
+                },
+                "flight": {
+                    "airline": best_recommendation["flight"]["airline"],
+                    "duration": best_recommendation["flight"].get("duration", "N/A"),
+                    "stops": best_recommendation["flight"].get("stops", 0),
+                    "price": best_recommendation["flight"].get("price", 0)
+                },
                 "estimated_total_cost": best_recommendation["total_user_cost"],
-                "itinerary": {
-                    "day_1": f"Arrive at {request.destination}, check in to {best_recommendation['hotel']['name']}, explore area",
-                    "day_2": f"Main attractions in {request.destination}",
-                    "day_3": f"Guided tours and cultural experiences",
-                    "day_4": f"Leisure activities and local exploration",
-                    "day_5": f"Shopping and relaxation",
-                    "day_6": f"Hotel amenities and spa",
-                    f"day_{nights}": f"Final day - check out and depart"
-                }
+                "hotel_options": [
+                    {
+                        "name": rec["hotel"]["name"],
+                        "rating": rec["hotel"]["rating"],
+                        "location": rec["hotel"]["location"],
+                        "price_per_night": rec["hotel"]["price_per_night"],
+                        "amenities": rec["hotel"].get("amenities", [])
+                    }
+                    for rec in all_recommendations_list
+                ],
+                "transport_options": [
+                    {
+                        "type": "flight",
+                        "airline": f.get("airline"),
+                        "price": f.get("price"),
+                        "duration": f.get("duration"),
+                        "stops": f.get("stops")
+                    }
+                    for f in (flight_options[:3] if flight_options else [{"airline": best_recommendation["flight"]["airline"], "price": best_recommendation["flight"].get("price", 0), "duration": best_recommendation["flight"].get("duration", "N/A"), "stops": best_recommendation["flight"].get("stops", 0)}])
+                ]
             }
         )
         

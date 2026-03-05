@@ -209,7 +209,7 @@ export default function Home() {
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || 'Failed to generate plan');
 
-        replyText = `${data.analysis}\n\n**Recommendation:**\n${data.reasoning}\n\n${data.comparison_summary}`;
+        replyText = `${data.analysis}\n\n---\n**Trip Summary:**\n${data.reasoning}\n\n${data.comparison_summary}`;
 
         if (data.hotel_options && Array.isArray(data.hotel_options)) {
           const freshHotels = data.hotel_options.map((h: any, idx: number) => ({

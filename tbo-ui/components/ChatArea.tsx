@@ -7,6 +7,7 @@ import { ChatMessage, HotelOption, TransportOption, QuoteSummary, RecommendedHot
 import HotelOptions from './HotelOptions';
 import TransportOptions from './TransportOptions';
 import TravelPlanForm, { TravelPlanDetails } from './TravelPlanForm';
+import FormattedMessage from './FormattedMessage';
 
 interface ChatAreaProps {
   messages: ChatMessage[];
@@ -109,14 +110,17 @@ export default function ChatArea({
               </div>
             )}
             <div
-              className={`max-w-xs lg:max-w-md xl:max-w-lg px-4 py-3 rounded-2xl ${message.sender === 'user'
-                  ? 'bg-blue-500 text-white rounded-br-none'
-                  : 'bg-white text-gray-900 border border-gray-200 rounded-bl-none'
-                }`}
+              className={`px-4 py-3 rounded-2xl ${
+                message.sender === 'user'
+                  ? 'max-w-xs lg:max-w-md xl:max-w-lg bg-blue-500 text-white rounded-br-none'
+                  : 'w-full max-w-2xl xl:max-w-3xl bg-white text-gray-900 border border-gray-200 rounded-bl-none'
+              }`}
             >
               {/* Regular message content */}
               {!message.isLoading && (
-                <p className="text-sm leading-relaxed">{message.message}</p>
+                message.sender === 'agent'
+                  ? <FormattedMessage text={message.message} />
+                  : <p className="text-sm leading-relaxed">{message.message}</p>
               )}
 
               {/* Premium Loading State */}
