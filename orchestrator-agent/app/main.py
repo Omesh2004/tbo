@@ -365,43 +365,41 @@ async def recommend_travel_plan(request: TravelRecommendationRequest) -> TravelR
             if amenities:
                 hotel_options_text += f"    Amenities: {', '.join(amenities[:5])}\n"
 
-        llm_context = f"""You are a professional travel planner. Create a detailed, practical travel plan for the trip below.
+        llm_context = f"""You are a professional travel consultant. Produce a concise, well-structured travel plan using the information below. Use plain, formal language. Do not use emoji, exclamation marks, promotional language, profit figures, or scoring of any kind.
 
-TRIP DETAILS:
-- From: {request.origin}
-- To: {request.destination}
-- Dates: {request.check_in} to {request.check_out} ({nights} nights)
-- Passengers: {request.passengers}
-- Travel Style: {request.travel_style or 'flexible'}
-- Budget: ${request.budget or 'flexible'}
-- Special Requirements: {request.special_requirements or 'None'}
+TRIP DETAILS
+Origin: {request.origin}
+Destination: {request.destination}
+Dates: {request.check_in} to {request.check_out} ({nights} nights)
+Passengers: {request.passengers}
+Travel Style: {request.travel_style or 'Standard'}
+Budget: {('$' + str(request.budget)) if request.budget else 'Flexible'}
+Special Requirements: {request.special_requirements or 'None'}
 
-FLIGHT OPTIONS:
-  Primary: {best_flight.get('airline')} — ${best_flight.get('price')} — {best_flight.get('duration')} — {best_flight.get('stops')} stop(s)
+AVAILABLE FLIGHT
+Airline: {best_flight.get('airline')} | Price: ${best_flight.get('price')} | Duration: {best_flight.get('duration')} | Stops: {best_flight.get('stops')}
 
-HOTEL OPTIONS:
+AVAILABLE HOTELS
 {hotel_options_text}
-Write ONLY a detailed travel plan in the following structure. Do NOT include any platform profit analysis, commission figures, upsell suggestions, or recommendation scoring.
-
-STRUCTURE YOUR RESPONSE EXACTLY AS:
+Respond using the exact section headings below. Each section must be separated by a blank line. Do not add any sections beyond those listed.
 
 FLIGHT & TRANSPORT:
-[Describe the recommended flight, journey duration, any connections, and local transport at destination such as metro, taxi, rental car]
+Outline the recommended flight, including departure and arrival details, any connections, and ground transport options at the destination (e.g. metro, taxi, car hire).
 
 HOTEL OPTIONS:
-[List each hotel option with its highlights, star rating, location advantages, and key amenities. Help the traveller understand the difference between the options.]
+For each hotel, provide the name, star rating, location, key amenities, and a brief note on who it best suits. Keep each entry to 2-3 sentences.
 
 DAY-BY-DAY ITINERARY:
-Day 1 — [Date: {request.check_in}]: [Activities, arrival plan, check-in, evening suggestion]
-Day 2: [Specific attractions, landmarks, or experiences to visit]
-... (continue for all {nights} nights)
-Day {nights} — [Date: {request.check_out}]: [Final day activities, check-out, departure]
+Day 1 - {request.check_in}: Arrival, check-in, and orientation.
+Day 2: [Primary sightseeing or activity]
+(Continue for each of the {nights} nights.)
+Day {nights} - {request.check_out}: Check-out and departure.
 
 MUST-VISIT PLACES:
-[List the top attractions, landmarks, and experiences at {request.destination} with a brief description of each]
+List the most significant attractions at {request.destination}. For each, give the name and one sentence describing what makes it worth visiting.
 
 LOCAL TIPS:
-[Practical tips: local transport, best food spots, cultural notes, weather, packing suggestions]
+Cover practical matters: local transport, recommended cuisine, cultural etiquette, weather, and essential items to pack.
 """
         
         # Send to LLM for intelligent analysis
