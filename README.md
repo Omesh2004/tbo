@@ -410,3 +410,5 @@ Then choose option 1 to build and start all services.
 **Status**: Production Ready 🚀  
 **Last Updated**: March 1, 2026  
 **Version**: 1.0.0
+
+   Demo video  :-https://youtu.be/wd33sN2QTS0
