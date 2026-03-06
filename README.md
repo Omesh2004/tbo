@@ -411,4 +411,16 @@ Then choose option 1 to build and start all services.
 **Last Updated**: March 1, 2026  
 **Version**: 1.0.0
 
-   Demo video  :-https://youtu.be/wd33sN2QTS0
+## 🎥 Demo Video
+
+<div align="center">
+
+<iframe width="800" height="450"
+src="https://www.youtube.com/embed/wd33sN2QTS0"
+title="TBO ChatBot Platform Demo"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+</div>
